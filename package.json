@@ -1,6 +1,6 @@
 {
-    "name": "delete-test-01",
-    "description": "delete-test-01-description",
+    "name": "healthya_line_campaign_api",
+    "description": "healthya_line_campaign api gateway and lambda.",
     "version": "0.0.1",
     "private": true,
     "dependencies": {
@@ -13,4 +13,3 @@
         "test": "jest"
     }
 }
-
