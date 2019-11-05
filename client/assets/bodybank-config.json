@@ -1,0 +1,9 @@
+{
+"graph_ql_endpoint": "https://2uqrhjzmpredrbsfubrw5wbgpu.appsync-api.ap-northeast-1.amazonaws.com/graphql",
+"graph_ql_region": "ap-northeast-1",
+"bucket_name": "bodybank-enterprise-kao-dev-estimation-data-bucket",
+"bucket_region": "ap-northeast-1",
+"id_pool_id": "ap-northeast-1:9721e115-6714-47f4-b643-bd626055e4b6",
+"id_pool_region": "ap-northeast-1",
+"encryption_key": "6ccd34fe-2a11-4df6-ad5c-25d831fd5110"
+}
