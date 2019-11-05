@@ -18,7 +18,7 @@ Resources:
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
-  # This is a Lambda function config associated with the source code: notify_estimation.js
+  # source code: notify_estimation.js
   notifyEstimationFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -33,6 +33,25 @@ Resources:
           Properties:
             Path: /api/notify_estimation
             Method: POST
+  # source code: token.js
+  getBodyGramTokenFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get_bodygram_token.getBodyGramTokenHandler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 100
+      Description: Get token of BodyBank API.
+      Environment:
+        Variables:
+          hostUrl: "https://d8x5pb4778.execute-api.ap-northeast-1.amazonaws.com/dev"
+          token: "vvgSvuKwwV3N4EQ9AX0Is8KMFwKBoV6t57YdaUmb"
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /api/get_bodygram_token
+            Method: GET
 
 Outputs:
   WebEndpoint:

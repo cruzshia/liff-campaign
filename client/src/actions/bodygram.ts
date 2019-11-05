@@ -23,14 +23,20 @@ interface IncomingToken {
 }
 
 interface IncomingResponseBody {
-  readonly content:IncomingToken
+  readonly content: IncomingToken
+  readonly error: any
+}
+
+interface IncomingResponse {
+  readonly status: number
+  readonly body: IncomingResponseBody
 }
 
 declare global {
   interface Window { BodyBankEnterprise: any; }
 }
 
-const API_PATH = '/token'
+const API_PATH = '/get_bodygram_token'
 const bodybank = new window.BodyBankEnterprise
 
 export const getBodyGramToken = () => async (dispatch: Dispatch) => {
@@ -38,10 +44,10 @@ export const getBodyGramToken = () => async (dispatch: Dispatch) => {
 
   tokenProvider.restoreTokenBlock = async () => {
     try {
-      const res: HttpResponse<IncomingResponseBody> = await http.get(API_PATH, {}, {})
-      if (res.status === 200) {
-        const jwt_token = res.data.content.token.jwt_token
-        const identity_id = res.data.content.token.identity_id
+      const res: HttpResponse<IncomingResponse> = await http.get(API_PATH, {}, {})
+      if (res.data.status === 200) {
+        const jwt_token = res.data.body.content.token.jwt_token
+        const identity_id = res.data.body.content.token.identity_id
 
         console.log(jwt_token)
         console.log(identity_id)

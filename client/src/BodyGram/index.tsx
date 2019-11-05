@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { callCreateEstimationRequest, getBodyGramToken } from '../actions/user'
+import { callCreateEstimationRequest, getBodyGramToken } from '../actions/bodygram'
 import { EstimationParameter } from '../models/bodygram'
 
 interface Props extends RouteComponentProps<any> {
