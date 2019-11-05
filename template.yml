@@ -27,11 +27,6 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: HTTP post method for BodyBank Web-hook.
-      Policies:
-        # Give Create/Read/Update/Delete Permissions to the SampleTable
-      Environment:
-        Variables:
-          # Make table name accessible as environment variable from function code during execution
       Events:
         Api:
           Type: Api
