@@ -69,7 +69,7 @@ my-application$ aws cloudformation describe-stacks \
 Build your application by using the `sam build` command.
 
 ```bash
-my-application$ sam build
+my-application$ sam build --use-container
 ```
 
 The AWS SAM CLI installs dependencies that are defined in `package.json`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
