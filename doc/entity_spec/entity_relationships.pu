@@ -8,7 +8,7 @@ skinparam class {
     ArrowColor Black
 }
 
-package "amana CONTENT.COM" as application {
+package "Healthya LINE Campaign" as application {
   entity "users" <<E, ENTITY_ICON>> COMMON {
     + id: bigint(20) [PK]
     ==
