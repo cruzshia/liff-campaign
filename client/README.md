@@ -1,4 +1,4 @@
-Amana-content-com Front-end
+Healthya LINE Campaign Front-end
 =========
 
 # 開発環境

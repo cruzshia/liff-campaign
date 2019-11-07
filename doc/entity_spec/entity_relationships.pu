@@ -1,0 +1,67 @@
+@startuml
+
+!define COMMON #C1DFC4-DEECDD
+!define ENTITY_ICON #ABECD6
+
+skinparam class {
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "Healthya LINE Campaign" as application {
+  entity "users" <<E, ENTITY_ICON>> COMMON {
+    + id: bigint(20) [PK]
+    ==
+    * uid: varchar(255)
+    gender: string
+    birthday: string
+    height: number
+    weight: number
+    abdominal_circumscript: number
+    offal_fat: number
+    ac_graph_url: string
+    of_graph_url: string
+
+    created_at: datetime
+    updated_at: datetime
+  }
+
+  entity "estimation_logs" <<E, ENTITY_ICON>> COMMON {
+    + id: bigint(20) [PK]
+    ==
+    # user_id: bigint(20)  [FK]
+    abdominal_circumscript: number
+    offal_fat: number
+    ac_diff: number
+    of_diff: number
+    week: number
+    created_at: datetime
+    updated_at: datetime
+  }
+
+  entity "line_points" <<E, ENTITY_ICON>> COMMON {
+    + id: bigint(20) [PK]
+    ==
+    # user_id: bigint(20)
+    point: integer
+    point_url: string
+    created_at: datetime
+    updated_at: datetime
+  }
+
+  entity "amazon_coupons" <<E, ENTITY_ICON>> COMMON {
+    + id: bigint(20) [PK]
+    ==
+    # user_id: bigint(20)
+    point: integer
+    point_url: string
+    created_at: datetime
+    updated_at: datetime
+  }
+}
+
+users ---o{ estimation_logs
+users }o--o{ line_points
+users }o--o{ amazon_coupons
+
+@enduml
