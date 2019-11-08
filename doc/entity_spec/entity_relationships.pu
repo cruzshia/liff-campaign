@@ -17,9 +17,9 @@ package "Healthya LINE Campaign" as application {
     birthday: string
     height: number
     weight: number
-    abdominal_circumscript: number
+    waist_circumference: number
     offal_fat: number
-    ac_graph_url: string
+    wc_graph_url: string
     of_graph_url: string
 
     created_at: datetime
@@ -30,9 +30,9 @@ package "Healthya LINE Campaign" as application {
     + id: bigint(20) [PK]
     ==
     # user_id: bigint(20)  [FK]
-    abdominal_circumscript: number
+    waist_circumference: number
     offal_fat: number
-    ac_diff: number
+    wc_diff: number
     of_diff: number
     week: number
     created_at: datetime

@@ -2,9 +2,9 @@ const { post } = require('../lib/http');
 
 const env = process.env;
 
-exports.getBodyGramTokenHandler = async (event) => {
+exports.getBodyGramTokenHandler = async (event, context, callback) => {
     if (event.httpMethod !== 'GET') {
-        throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
+        throw new Error(`getMethod only accepts GET method, you tried: ${event.httpMethod} method.`);
     }
     // All log statements are written to CloudWatch
     //console.info('received:', event);
@@ -16,7 +16,7 @@ exports.getBodyGramTokenHandler = async (event) => {
         const res = await post(env.hostUrl, '/token', { user_id: "unique_user_id_test"}, env.token)
         response = {
             statusCode: 200,
-            body: JSON.stringify(res),
+            body: JSON.stringify(res.body),
             headers: {
                 'Content-Type': 'application/json',
             },
