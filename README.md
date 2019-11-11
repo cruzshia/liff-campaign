@@ -30,12 +30,6 @@ To use the AWS SAM CLI, you need the following tools:
 * Node.js - [Install Node.js 10](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
-The AWS SAM CLI uses an Amazon S3 bucket to store your application's deployment artifacts. If you don't have a bucket suitable for this purpose, create one. Replace `BUCKET_NAME` in the commands in this section with a unique bucket name.
-
-```bash
-my-application$ aws s3 mb s3://BUCKET_NAME
-```
-
 To prepare the application for deployment, use the `sam package` command.
 
 ```bash
@@ -66,13 +60,13 @@ my-application$ aws cloudformation describe-stacks \
 
 ## Use the AWS SAM CLI to build and test locally
 
-Build your application by using the `sam build` command.
+Build your application by using the `npm run build` command.
 
 ```bash
-my-application$ sam build --use-container
+my-application$ npm run build
 ```
 
-The AWS SAM CLI installs dependencies that are defined in `package.json`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
+The AWS SAM CLI installs dependencies that are defined in `package.json`, creates a deployment package, and saves it in the `.built` folder.
 
 Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
