@@ -1,13 +1,12 @@
-'use strict'
+import rp from 'request-promise'
 
-const rp = require('request-promise')
 const isTest = process.env.NODE_ENV === 'test'
 
 // Convenient request senders
-const get = async (host, path, key) => sendRequest('GET', host, path, null, '', key)
-const post = async (host, path, body, key) => sendRequest('POST',host,  path, null, body, key)
+export const get = async (host: string, path: string, key: string) => sendRequest('GET', host, path, null, '', key)
+export const post = async (host: string, path: string, body: any, key: string) => sendRequest('POST',host,  path, null, body, key)
 
-const sendRequest = async (method, host, path, queryParams, body, key) => {
+export const sendRequest = async (method: string, host: string, path: string, queryParams: any, body: any, key: string) => {
   const reqBody = (typeof(body) !== 'string') ? JSON.stringify(body) : body
   const baseHeaders = {
     'x-api-key': key,
@@ -25,16 +24,14 @@ const sendRequest = async (method, host, path, queryParams, body, key) => {
   }).catch(handleUnexpectedError)
 }
 
-const jsonReader = (body, { statusCode, headers }) => {
+const jsonReader = (body: any, { statusCode, headers }: any) => {
   const isJson = headers['content-type'] && headers['content-type'].startsWith('application/json')
   return { status: statusCode, body: isJson ? JSON.parse(body) : body }
 }
 
-const handleUnexpectedError = (error) => {
+const handleUnexpectedError = (error: any) => {
   if (!isTest) {
     console.error(error)
   }
   return { status: 500, body: { message: error.message } }
 }
-
-module.exports = { get, post, sendRequest }
