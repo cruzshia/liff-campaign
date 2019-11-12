@@ -8,7 +8,7 @@ Healthya LINE Campaign Front-end
 レポジトリのトップレベルのディレクトリで以下を実行
 
 ```bash
-$ sam build --use-container # サーバーのビルド
+$ npm run build # サーバーのビルド
 $ sam local start-api # ローカルサーバーの起動(http://localhost:3000/)
 
 $ npm install --no-save
