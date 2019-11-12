@@ -1,0 +1,6 @@
+src/*
+client/*
+event/*
+jest.config.js
+tsconfig.json
+webpack.config.js
