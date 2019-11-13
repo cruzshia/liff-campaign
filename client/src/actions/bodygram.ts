@@ -32,7 +32,7 @@ declare global {
   interface Window { BodyBankEnterprise: any; }
 }
 
-const API_PATH = '/get_bodygram_token'
+const API_PATH = '/bodygram/token'
 const bodybank = new window.BodyBankEnterprise
 
 export const getBodyGramToken = () => async (dispatch: Dispatch) => {
@@ -40,7 +40,7 @@ export const getBodyGramToken = () => async (dispatch: Dispatch) => {
 
   tokenProvider.restoreTokenBlock = async () => {
     try {
-      const res: HttpResponse<IncomingResponseBody> = await http.get(API_PATH, {}, {})
+      const res: HttpResponse<IncomingResponseBody> = await http.get(API_PATH, {'x-api-key': 'test'}, {})
       if (res.status === 200) {
         const jwt_token = res.data.content.token.jwt_token
         const identity_id = res.data.content.token.identity_id
