@@ -50,7 +50,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/get_bodygram_token
+            Path: /api/bodygram/token
             Method: GET
 
 Outputs:
