@@ -52,6 +52,21 @@ Resources:
           Properties:
             Path: /api/get_bodygram_token
             Method: GET
+  usersCreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs10.x
+      CodeUri: ./built/usersCreate
+      MemorySize: 128
+      Timeout: 100
+      Description: Register own user data.
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /api/users
+            Method: POST
 
 Outputs:
   WebEndpoint:
