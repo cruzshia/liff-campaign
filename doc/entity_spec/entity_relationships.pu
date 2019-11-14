@@ -12,7 +12,7 @@ package "Healthya LINE Campaign" as application {
   entity "users" <<E, ENTITY_ICON>> COMMON {
     + id: bigint(20) [PK]
     ==
-    * uid: varchar(255)
+    * uid: string
     gender: string
     birthday: string
     height: number
@@ -29,7 +29,9 @@ package "Healthya LINE Campaign" as application {
   entity "estimation_logs" <<E, ENTITY_ICON>> COMMON {
     + id: bigint(20) [PK]
     ==
-    # user_id: bigint(20)  [FK]
+    # uid: string
+    # rid: string
+    status: string
     waist_circumference: number
     offal_fat: number
     wc_diff: number
@@ -42,7 +44,7 @@ package "Healthya LINE Campaign" as application {
   entity "line_points" <<E, ENTITY_ICON>> COMMON {
     + id: bigint(20) [PK]
     ==
-    # user_id: bigint(20)
+    # uid: string
     point: integer
     point_url: string
     created_at: datetime
@@ -52,7 +54,7 @@ package "Healthya LINE Campaign" as application {
   entity "amazon_coupons" <<E, ENTITY_ICON>> COMMON {
     + id: bigint(20) [PK]
     ==
-    # user_id: bigint(20)
+    # uid: string
     point: integer
     point_url: string
     created_at: datetime

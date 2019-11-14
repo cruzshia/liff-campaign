@@ -52,6 +52,21 @@ Resources:
           Properties:
             Path: /api/bodygram/token
             Method: GET
+  getBodyGramEstimation:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs10.x
+      CodeUri: ./built/getBodyGramEstimation
+      MemorySize: 128
+      Timeout: 100
+      Description: Get estimation result of BodyBank API.
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /api/bodygram/estimation
+            Method: GET
 
 Outputs:
   WebEndpoint:

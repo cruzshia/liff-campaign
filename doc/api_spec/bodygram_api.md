@@ -21,7 +21,10 @@ Get user token.
 - Response 401 (application/json)
   - Attributes (UnAuthorized)
 
-## Bodygram [/api/bodygram/estimation]
+## Bodygram [/api/bodygram/estimation{?rid}]
+
+- Parameters
+  - `rid`: `d69b5155-beba-42c9-b3cd-c17068c3c642` (string, required)
 
 ### GetBodyGramEstimation [GET]
 
@@ -35,7 +38,7 @@ Retrieve own estimation result.
             token: user_token
 
 - Response 200 (application/json)
-  - Attributes (object)
+  - Attributes (BodyGramEstimationResponse)
 - Response 400 (application/json)
   - Attributes (BadRequest)
 - Response 401 (application/json)
