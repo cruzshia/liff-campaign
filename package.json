@@ -4,6 +4,7 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "mysql": "^2.17.1",
         "request": "*",
         "request-promise": "*",
         "source-map-support": "^0.5.16"
@@ -13,6 +14,7 @@
         "@babel/preset-env": "^7.7.1",
         "@types/aws-lambda": "^8.10.35",
         "@types/glob": "^7.1.1",
+        "@types/mysql": "^2.15.8",
         "@types/node": "^12.12.7",
         "@types/request-promise": "^4.1.44",
         "@types/webpack": "^4.39.8",
