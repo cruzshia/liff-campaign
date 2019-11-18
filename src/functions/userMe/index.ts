@@ -1,7 +1,4 @@
-import { post } from '../../lib/http'
 import { APIGatewayEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
-
-const env = process.env
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     if (event.httpMethod !== 'GET') {
@@ -14,11 +11,10 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     let response: APIGatewayProxyResult
 
     try {
-        // TODO: Get user_id from API header token or query.
-        const res = await post(env.hostUrl || '', '/token', { user_id: "unique_user_id_test"}, env.token || '')
+        const res = ''  // It will be stored values from DB
         response = {
             statusCode: 200,
-            body: JSON.stringify(res.body),
+            body: JSON.stringify(res),
             headers: {
                 'Content-Type': 'application/json',
             },

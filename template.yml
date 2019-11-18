@@ -87,7 +87,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs10.x
-      CodeUri: ./built/userShow
+      CodeUri: ./built/userMe
       MemorySize: 128
       Timeout: 100
       Description: Retrieve own user data.
