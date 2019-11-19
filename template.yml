@@ -96,11 +96,16 @@ Resources:
           hostUrl: "https://api.kao-dev.enterprise.bodybank.com"
           token: "vvgSvuKwwV3N4EQ9AX0Is8KMFwKBoV6t57YdaUmb"
       Events:
-        Api:
+        userMeShow:
           Type: Api
           Properties:
             Path: /api/v1/users/me
             Method: GET
+        userMeUpdate:
+          Type: Api
+          Properties:
+            Path: /api/v1/users/me
+            Method: PUT
 Outputs:
   WebEndpoint:
     Description: "API Gateway endpoint URL for Prod stage"
