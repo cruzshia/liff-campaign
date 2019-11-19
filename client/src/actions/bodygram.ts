@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 
 import { http, HttpResponse } from '../utils/http'
 import { EstimationParameter } from '../models/bodygram'
+import BodyBankEnterprise from '../../assets/bodybank-enterprise.min.js'
 
 const bodybankConfig = {
   "graph_ql_endpoint": "https://2uqrhjzmpredrbsfubrw5wbgpu.appsync-api.ap-northeast-1.amazonaws.com/graphql",
@@ -27,13 +28,8 @@ interface IncomingResponseBody {
   readonly error: any
 }
 
-
-declare global {
-  interface Window { BodyBankEnterprise: any; }
-}
-
 const API_PATH = '/bodygram/token'
-const bodybank = new window.BodyBankEnterprise
+const bodybank = new BodyBankEnterprise
 
 export const getBodyGramToken = () => async (dispatch: Dispatch) => {
   const tokenProvider = bodybank.getDefaultTokenProvider()

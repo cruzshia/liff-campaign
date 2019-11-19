@@ -19,3 +19,8 @@ declare module "*.sass" {
   const style: any;
   export default style;
 }
+
+declare module "bodybank-enterprise.min.js" {
+  const style: any;
+  export default style;
+}

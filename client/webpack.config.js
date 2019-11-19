@@ -83,7 +83,7 @@ module.exports = (env, argv) => ({
   },
   output: {
     path: path.join(__dirname, 'public'),
-    publicPath: '/assets/',
+    publicPath: '/',
     filename: 'client.js',
   },
   devServer: {
