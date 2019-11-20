@@ -17,7 +17,7 @@ $ npm run watch # 別のシェル
 
 ### 動作確認
 
-- http://localhost:9000/assets
+- http://localhost:9000
 
 
 ## コードフォーマッタの実行(prettier, tslint, stylelint)
