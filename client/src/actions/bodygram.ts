@@ -27,12 +27,9 @@ interface IncomingResponseBody {
   readonly error: any
 }
 
-declare global {
-  interface Window { BodyBankEnterprise: any; }
-}
-
+const { BodyBankEnterprise } = window
 const API_PATH = '/bodygram/token'
-const bodybank = new window.BodyBankEnterprise
+const bodybank = new BodyBankEnterprise
 
 export const getBodyGramToken = () => async (dispatch: Dispatch) => {
   const tokenProvider = bodybank.getDefaultTokenProvider()

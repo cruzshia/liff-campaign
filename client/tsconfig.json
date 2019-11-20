@@ -28,7 +28,7 @@
     "downlevelIteration": true,
   },
   "filesGlob": [
-    "ui/types/*.d.ts",
+    "types/*.d.ts",
   ],
   "include": [
     "src/**/*",

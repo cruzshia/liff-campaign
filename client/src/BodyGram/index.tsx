@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom'
 
 import { callCreateEstimationRequest, getBodyGramToken } from '../actions/bodygram'
 import { EstimationParameter } from '../models/bodygram'
+// import liff, { init } from '../utils/liff'
 
 interface Props extends RouteComponentProps<any> {
   readonly token: () => void
@@ -30,9 +31,15 @@ class BodyGram extends React.Component<Props, State> {
     }
   }
 
-  public componentDidMount() {
+  public async componentDidMount() {
     const { token } = this.props
     token()
+    /*
+    await init()
+
+    const liffToken = await liff.getAccessToken()
+    console.log(liffToken)
+    */
   }
 
   private handleChangeGender = (event: any) => {
