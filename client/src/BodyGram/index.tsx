@@ -4,11 +4,11 @@ import { RouteComponentProps } from 'react-router-dom'
 
 import { callCreateEstimationRequest, getBodyGramToken } from '../actions/bodygram'
 import { EstimationParameter } from '../models/bodygram'
-// import liff, { init } from '../utils/liff'
 
 interface Props extends RouteComponentProps<any> {
   readonly token: () => void
   readonly estimate: (param: EstimationParameter) => void
+  readonly session: string
 }
 
 interface State {
@@ -27,19 +27,16 @@ class BodyGram extends React.Component<Props, State> {
       height: 170,
       weight: 60,
       front: null,
-      side: null
+      side: null,
     }
   }
 
   public async componentDidMount() {
     const { token } = this.props
     token()
-    /*
-    await init()
+  }
 
-    const liffToken = await liff.getAccessToken()
-    console.log(liffToken)
-    */
+  public async componentDidUpdate() {
   }
 
   private handleChangeGender = (event: any) => {
@@ -80,6 +77,8 @@ class BodyGram extends React.Component<Props, State> {
   }
 
   public render() {
+    const { session } = this.props
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -108,12 +107,21 @@ class BodyGram extends React.Component<Props, State> {
         </label>
         <br/>
         <input type="submit" value="Submit" />
+        <br/>
+        {
+          session ?
+          <div>
+            <label>LINE token</label>
+            <br/>
+            {session}
+          </div> : null
+        }
       </form>
     )
   }
 }
 
-const mapStateToProps = ({ account, session }: any) => ({ account, session })
+const mapStateToProps = ({ session }: any) => ({ session })
 const actionCreators = {
   token: getBodyGramToken,
   estimate: callCreateEstimationRequest,
