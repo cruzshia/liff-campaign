@@ -18,6 +18,10 @@ const getLineSessionSuccess = (token: string) => ({
 const getLineSessionFailure = () => ({ type: SessionActionTypes.GET_FAILURE })
 
 export const getLineSession = () => async (dispatch: Dispatch) => {
+  if (window.location.host === 'localhost:9000') {
+    dispatch(getLineSessionSuccess('dev_token'))
+    return
+  }
   // initialize and login.
   await init()
 
