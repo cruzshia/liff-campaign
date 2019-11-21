@@ -6,11 +6,13 @@ import { Provider } from 'react-redux'
 
 import { history, store } from './store/index'
 import { routePath } from './appConfig'
+import LineLogin from './LineLogin'
 import BodyGram from './BodyGram'
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
+      <LineLogin/>
       <Switch>
         <Route path={routePath.root} component={BodyGram} />
       </Switch>

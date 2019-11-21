@@ -22,6 +22,12 @@ const providePlugin = new webpack.ProvidePlugin({
   Promise: 'es6-promise',
 })
 
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const copyWebpackPlugin = new CopyWebpackPlugin([{
+  from: path.join(__dirname, 'assets'),
+  to: path.join(__dirname, 'public'),
+}])
+
 module.exports = (env, argv) => ({
   entry: {
     app: [ './src/index.tsx' ]
@@ -83,7 +89,7 @@ module.exports = (env, argv) => ({
   },
   output: {
     path: path.join(__dirname, 'public'),
-    publicPath: '/assets/',
+    publicPath: '/',
     filename: 'client.js',
   },
   devServer: {
@@ -105,6 +111,7 @@ module.exports = (env, argv) => ({
   },
   plugins: [
     cleanPlugin,
+    copyWebpackPlugin,
     miniCssExtractPlugin,
     htmlPlugin,
     manifestPlugin,

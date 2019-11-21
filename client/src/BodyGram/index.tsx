@@ -8,6 +8,7 @@ import { EstimationParameter } from '../models/bodygram'
 interface Props extends RouteComponentProps<any> {
   readonly token: () => void
   readonly estimate: (param: EstimationParameter) => void
+  readonly session: string
 }
 
 interface State {
@@ -26,13 +27,16 @@ class BodyGram extends React.Component<Props, State> {
       height: 170,
       weight: 60,
       front: null,
-      side: null
+      side: null,
     }
   }
 
-  public componentDidMount() {
+  public async componentDidMount() {
     const { token } = this.props
     token()
+  }
+
+  public async componentDidUpdate() {
   }
 
   private handleChangeGender = (event: any) => {
@@ -73,6 +77,8 @@ class BodyGram extends React.Component<Props, State> {
   }
 
   public render() {
+    const { session } = this.props
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -101,12 +107,21 @@ class BodyGram extends React.Component<Props, State> {
         </label>
         <br/>
         <input type="submit" value="Submit" />
+        <br/>
+        {
+          session ?
+          <div>
+            <label>LINE token</label>
+            <br/>
+            {session}
+          </div> : null
+        }
       </form>
     )
   }
 }
 
-const mapStateToProps = ({ account, session }: any) => ({ account, session })
+const mapStateToProps = ({ session }: any) => ({ session })
 const actionCreators = {
   token: getBodyGramToken,
   estimate: callCreateEstimationRequest,
