@@ -27,6 +27,13 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: HTTP post method for BodyBank Web-hook.
+      Environment:
+        Variables:
+          DB_HOST: !Ref DB_HOST
+          DB_PORT: 3306
+          DB_USER: !Ref DB_USER
+          DB_PASSWORD: !Ref DB_PASSWORD
+          DB_NAME: !Ref DB_NAME
       Events:
         Api:
           Type: Api

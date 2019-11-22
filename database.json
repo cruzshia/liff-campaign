@@ -1,0 +1,15 @@
+{
+  "init": {
+      "driver": "mysql",
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "local_root"
+  },
+  "dev": {
+      "driver": "mysql",
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "local_root",
+      "database": "app_development"
+  }
+}
