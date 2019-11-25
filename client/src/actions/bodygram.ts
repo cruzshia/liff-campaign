@@ -31,12 +31,16 @@ const { BodyBankEnterprise } = window
 const API_PATH = '/bodygram/token'
 const bodybank = new BodyBankEnterprise
 
-export const getBodyGramToken = () => async (dispatch: Dispatch) => {
+export const getBodyGramToken = (authorization: string) => async (dispatch: Dispatch) => {
   const tokenProvider = bodybank.getDefaultTokenProvider()
 
   tokenProvider.restoreTokenBlock = async () => {
     try {
-      const res: HttpResponse<IncomingResponseBody> = await http.get(API_PATH, {'x-api-key': 'test'}, {})
+      const headers = {
+        'x-api-key': 'test',
+        authorization,
+      }
+      const res: HttpResponse<IncomingResponseBody> = await http.get(API_PATH, headers, {})
       if (res.status === 200) {
         const jwt_token = res.data.content.token.jwt_token
         const identity_id = res.data.content.token.identity_id

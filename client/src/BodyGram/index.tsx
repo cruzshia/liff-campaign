@@ -6,7 +6,7 @@ import { callCreateEstimationRequest, getBodyGramToken } from '../actions/bodygr
 import { EstimationParameter } from '../models/bodygram'
 
 interface Props extends RouteComponentProps<any> {
-  readonly token: () => void
+  readonly getBodyGramToken: (authorization: string) => void
   readonly estimate: (param: EstimationParameter) => void
   readonly session: string
 }
@@ -17,6 +17,7 @@ interface State {
   readonly weight: number
   readonly front: File | null
   readonly side: File | null
+  initialized: boolean
 }
 
 class BodyGram extends React.Component<Props, State> {
@@ -28,15 +29,20 @@ class BodyGram extends React.Component<Props, State> {
       weight: 60,
       front: null,
       side: null,
+      initialized: false,
     }
   }
 
   public async componentDidMount() {
-    const { token } = this.props
-    token()
   }
 
   public async componentDidUpdate() {
+    const { getBodyGramToken, session } = this.props
+    const { initialized } = this.state
+    if(session && !initialized) {
+      getBodyGramToken(session)
+      this.setState({ initialized: true })
+    }
   }
 
   private handleChangeGender = (event: any) => {
@@ -123,7 +129,7 @@ class BodyGram extends React.Component<Props, State> {
 
 const mapStateToProps = ({ session }: any) => ({ session })
 const actionCreators = {
-  token: getBodyGramToken,
+  getBodyGramToken,
   estimate: callCreateEstimationRequest,
 }
 
