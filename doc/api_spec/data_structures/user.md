@@ -9,7 +9,6 @@
 
 ## CreateUserRequestBody (object)
 
-- `id`:                  `user_id` (string, required) - User id.
 - `gender`:              `male` (string, required) - Gender.
 - `birthday`:            `19990101` (string, required) - Birthday.
 - `height`:              `170` (number, required) - Height.
