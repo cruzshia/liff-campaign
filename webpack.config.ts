@@ -43,7 +43,11 @@ const config: Webpack.Configuration = {
   module: {
     rules: [
       {
-        exclude: /(client)/,
+        exclude: [
+          /node_modules/,
+          /client/,
+          /migrations/
+        ],
         test: /\.ts?$/,
         loader: 'ts-loader'
       }

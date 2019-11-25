@@ -66,7 +66,11 @@ $ sam local invoke getAllItemsFunction --event events/event-get-all-items.json
 The AWS SAM CLI can also emulate your application's API. Use the `sam local start-api` command to run the API locally on port 3000.
 
 ```bash
-$ docker-compose up
+$ docker network create lambda-local # for the first time only
+$ docker-compose up -d
+$ npm install -g sequelize # for the first time only
+$ sequelize db:create # for the first time only
+$ sequelize db:migrate --env development
 $ sam local start-api --env-vars env.json --docker-network lambda-local
 $ curl http://localhost:3000/
 ```
@@ -97,6 +101,18 @@ $ sam deploy \
 ```
 
 Open the [**Applications**](https://console.aws.amazon.com/lambda/home#/applications) page of the Lambda console, and choose your application. When the deployment completes, view the application resources on the **Overview** tab to see the new resource. Then, choose the function to see the updated configuration that specifies the dead-letter queue.
+
+## Create database migration file
+
+$ npm run db-migrate create `name`
+
+## Database migration
+
+$ npm run db-migrate up
+
+## Database migration rollback
+
+$ npm run db-migrate down
 
 ## Fetch, tail, and filter Lambda function logs
 

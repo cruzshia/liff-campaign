@@ -8,7 +8,11 @@ Healthya LINE Campaign Front-end
 レポジトリのトップレベルのディレクトリで以下を実行
 
 ```bash
+$ docker network create lambda-local # for the first time only
 $ docker-compose up
+$ npm install -g sequelize # for the first time only
+$ sequelize db:create # for the first time only
+$ sequelize db:migrate --env development
 $ npm run build # サーバーのビルド
 $ sam local start-api --env-vars env.json --docker-network lambda-local
 

@@ -2,6 +2,7 @@
 
 ## UserData (CreateUserRequestBody)
 
+- `uid`:                 `xxx` (string, required)
 - `waist_circumference`: `71.03106` (number, optional) - Waist circumference.
 - `offal_fat`:           `50` (number, optional) - Offal fat.
 - `wc_graph_url`:        `https://aaaa` (string, optional) - Waist circumference graph image url.
