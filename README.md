@@ -104,15 +104,15 @@ Open the [**Applications**](https://console.aws.amazon.com/lambda/home#/applicat
 
 ## Create database migration file
 
-$ npm run db-migrate create `name`
+$ sequelize migration:generate --name `name`
 
 ## Database migration
 
-$ npm run db-migrate up
+$ sequelize db:migrate --env development
 
 ## Database migration rollback
 
-$ npm run db-migrate down
+$ sequelize db:migrate:undo --env development
 
 ## Fetch, tail, and filter Lambda function logs
 

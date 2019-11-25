@@ -10,7 +10,6 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   if (event.httpMethod !== 'POST') {
     throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`)
   }
-  console.log('post users/me')
 
   const userId: string | undefined = await authorize(event)
   if (!userId) {
@@ -23,7 +22,6 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
 
   try {
     const { gender, birthday, height, weight }: CreateUserRequestBody = JSON.parse(event.body || '{}')
-
 
     const connection: Connection = await createSingleConnection()
 
