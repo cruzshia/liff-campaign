@@ -12,8 +12,10 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
 
     const connection: Connection = await createSingleConnection()
 
+    const datetime = new Date().toISOString().slice(0, 19).replace('T', ' ')
+
     // 仮SQL TODO:アクセストークンでLINE profileを取得し、userid, weekでDB検索し、上書きするか新規追加するか判断する
-    const sql = `INSERT INTO estimation_logs (uid, rid, waist_circumference) VALUES (1, 2, 50.0)`
+    const sql = `INSERT INTO estimation_logs (uid, rid, waist_circumference, created_at, updated_at) VALUES (1, 2, 50.0, '${datetime}', '${datetime}')`
 
     const result = await connection.query(sql)
     console.log(result)

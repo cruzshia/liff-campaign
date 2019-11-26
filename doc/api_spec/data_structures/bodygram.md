@@ -6,8 +6,8 @@
 
 - `requested` - Bodygram: `requested`.
 - `pending` - Bodygram: `pendingAutomaticEstimation`
-- `wcCompleted` - Bodygram `completed`
-- `ofCompleted` - Completed status of Offal fat estimation.
+- `estimated` - Bodygram `completed`
+- `completed` - Completed status of Offal fat estimation.
 
 ## BodyGramToken (object)
 

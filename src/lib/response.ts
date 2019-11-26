@@ -14,6 +14,10 @@ export const ServerError = (e: any): APIGatewayProxyResult => {
   return commonResponse(500, e)
 }
 
+export const BadRequest = (message: string): APIGatewayProxyResult => {
+  return commonResponse(400, message)
+}
+
 export const UnAuthorized = (message: string): APIGatewayProxyResult => {
   return commonResponse(401, { message })
 }
