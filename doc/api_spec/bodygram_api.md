@@ -1,6 +1,6 @@
 # Group BodyGram
 
-## Token [/api/bodygram/token]
+## Token [/api/v1/bodygram/token]
 
 ### GetToken [GET]
 
@@ -21,7 +21,7 @@ Get user token.
 - Response 401 (application/json)
   - Attributes (UnAuthorized)
 
-## Bodygram [/api/bodygram/estimation{?rid}]
+## Bodygram [/api/v1/bodygram/estimation{?rid}]
 
 - Parameters
   - `rid`: `d69b5155-beba-42c9-b3cd-c17068c3c642` (string, required)
@@ -46,7 +46,7 @@ Retrieve own estimation result.
 - Response 404 (application/json)
   - Attributes (NotFound)
 
-## Estimation [/api/notify_estimation]
+## Estimation [/api/v1/notify_estimation]
 
 ### NotifyEstimation [POST]
 

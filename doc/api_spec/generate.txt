@@ -2,8 +2,6 @@ FORMAT: 1A
 
 <!-- include(data_structures/error.md) -->
 <!-- include(data_structures/bodygram.md) -->
-<!-- include(data_structures/measurement.md) -->
 <!-- include(data_structures/user.md) -->
 <!-- include(bodygram_api.md) -->
-<!-- include(measurement_api.md) -->
 <!-- include(user_api.md) -->
