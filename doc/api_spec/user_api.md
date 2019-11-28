@@ -1,6 +1,6 @@
 # Group Users
 
-## Users [/api/users]
+## Users [/api/v1/users]
 
 ### Create [POST]
 

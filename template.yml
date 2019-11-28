@@ -38,7 +38,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/notify_estimation
+            Path: /api/v1/notify_estimation
             Method: POST
   getBodyGramToken:
     Type: AWS::Serverless::Function
@@ -57,7 +57,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/bodygram/token
+            Path: /api/v1/bodygram/token
             Method: GET
   getBodyGramEstimation:
     Type: AWS::Serverless::Function
@@ -72,7 +72,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/bodygram/estimation
+            Path: /api/v1/bodygram/estimation
             Method: GET
   usersCreate:
     Type: AWS::Serverless::Function
@@ -94,7 +94,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/users
+            Path: /api/v1/users
             Method: POST
   userMe:
     Type: AWS::Serverless::Function
