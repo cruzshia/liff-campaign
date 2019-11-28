@@ -12,14 +12,6 @@ module.exports = {
     return Promise.all([
       queryInterface.addIndex(
         'line_points',
-        ['uid'],
-        {
-          indexName: 'line_points_uid_index',
-          indicesType: 'UNIQUE'
-        }
-      ),
-      queryInterface.addIndex(
-        'line_points',
         ['updated_at'],
         {
           indexName: 'line_points_updated_at_index'
@@ -37,7 +29,6 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
     return Promise.all([
-      queryInterface.removeIndex('line_points', 'line_points_uid_index'),
       queryInterface.removeIndex('line_points', 'line_points_updated_at_index'),
     ])
   }
