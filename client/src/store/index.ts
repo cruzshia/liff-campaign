@@ -1,19 +1,12 @@
-import { createHashHistory } from 'history'
-import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'connected-react-router'
-import thunkMiddleware from 'redux-thunk'
+import { createStore, applyMiddleware, Middleware, compose } from 'redux'
+import reducer from '../reducer'
 import { createLogger } from 'redux-logger'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
-import createRootReducer from '../reducers/index'
+const middleware: Middleware[] = []
+const logger: any = createLogger({ collapsed: true })
 
-export const history = createHashHistory()
+process.env.NODE_ENV !== 'production' && middleware.push(logger)
 
-const mandatoryMiddlewares = [thunkMiddleware, routerMiddleware(history)]
-const logger: any = createLogger({ diff: true, collapsed: true })
-const composed =
-  process.env.NODE_ENV === 'production'
-    ? compose(applyMiddleware(...mandatoryMiddlewares))
-    : composeWithDevTools(applyMiddleware(...mandatoryMiddlewares, logger))
+const store = createStore(reducer, compose(applyMiddleware(...middleware)))
 
-export const store = createStore(createRootReducer(history), composed)
+export default store
