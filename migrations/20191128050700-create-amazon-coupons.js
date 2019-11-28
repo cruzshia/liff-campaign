@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('line_points');
+    return queryInterface.dropTable('amazon_coupons');
   }
 };
