@@ -4,5 +4,6 @@ interface Window {
     login: any
     isLoggedIn: () => boolean
     getAccessToken: () => string
+    getOS: () => string
   }
 }
