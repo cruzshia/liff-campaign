@@ -6,8 +6,7 @@
 
 - `requested` - Bodygram: `requested`.
 - `pending` - Bodygram: `pendingAutomaticEstimation`
-- `estimated` - Bodygram `completed`
-- `completed` - Completed status of Offal fat estimation.
+- `completed` - Bodygram `completed`
 
 ## BodyGramToken (object)
 
@@ -25,15 +24,14 @@
 
 ## BodyGramEstimationResponse (object)
 
-- `id`:                  `1` (number, required)
-- `uid`:                 `xxx` (string, required)
-- `rid`:                 `aaa` (string, required)
-- `status`               (BodyGramStatus, required)
-- `waist_circumference`: `80.0` (number, required)
-- `offal_fat`:           `20.0` (number, required)
-- `wc_diff`:             `0.0` (number, required)
-- `of_diff`:             `0.0` (number, required)
-- `week`:                `1` (number, required)
+- `id`:                  `1` (number, required) - id.
+- `uid`:                 `xxx` (string, required) - user id.
+- `rid`:                 `aaa` (string, required) - bodygram estimation request id.
+- `status`               (BodyGramStatus, required) - estimation status. If status changed `completed`, `waist_circumference` and `offal_fat` are set.
+- `waist_circumference`: `80.0` (number, optional) - Nullable. Estimated waist circumference.
+- `offal_fat`:           `20.0` (number, optional) - Nullable. Estimated offal fat.
+- `of_diff`:             `0.0` (number, optional) - Nullable.
+- `week`:                `1` (number, required) - times of estimation.
 - `created_at`:          `2019-11-13 18:34:52` (string, required)
 - `updated_at`:          `2019-11-13 18:34:52` (string, required)
 
