@@ -3,15 +3,19 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store'
 import Home from './containers/home'
-
+import InfoSetting from '@components/infoSetting'
+import './App.module.sass'
 const store = configureStore()
 
 const App: React.FC = () => {
   return (
-    <div className='App'>
+    <div>
       <Provider store={store}>
         <Router>
           <Switch>
+            <Route exact path='/info_setting' component={InfoSetting} />
+            <Route exact path='/weight_setting' component={Home} />
+            <Route exact path='/measurement_setting' component={Home} />
             <Route exact path='/' component={Home} />
           </Switch>
         </Router>
