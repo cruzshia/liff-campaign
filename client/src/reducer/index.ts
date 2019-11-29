@@ -1,4 +1,12 @@
 import { combineReducers } from 'redux'
-import users from './user'
+import userReducer, { userInitState, UserStateType } from './user/reducer'
 
-export default combineReducers({ users })
+export const initState = {
+  user: userInitState
+}
+
+export interface StoreState {
+  user: UserStateType
+}
+
+export default combineReducers<StoreState>({ user: userReducer })
