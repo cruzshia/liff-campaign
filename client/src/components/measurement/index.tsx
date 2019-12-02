@@ -8,8 +8,8 @@ import { routePath } from '@src/appConfig'
 
 export default function() {
   const history = useHistory()
-  const handleUseCamera = useCallback(() => history.push(routePath.root), [])
-  const handleUseInput = useCallback(() => history.push(routePath.root), [])
+  const handleUseCamera = useCallback(() => history.push(routePath.root), [history])
+  const handleUseInput = useCallback(() => history.push(routePath.root), [history])
   return (
     <Background>
       <InfoCard title='体重' message='あなたの体重をチェックしてください'>

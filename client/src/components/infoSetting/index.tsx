@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import Background from '@common/background'
 import InfoCard from '@src/common/infoCard'
