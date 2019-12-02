@@ -6,7 +6,7 @@ import style from './infoSetting.module.sass'
 import { useIntl } from 'react-intl'
 import messages from './messages'
 import Button from '@common/button'
-import { routePath } from '../../appConfig'
+import { routePath } from '@src/appConfig'
 
 export default function InfoSetting() {
   const intl = useIntl()
@@ -66,9 +66,7 @@ export default function InfoSetting() {
       <Button onClick={handlePageChange}>
         {intl.formatMessage(messages.input)}
       </Button>
-      <Button onClick={() => {}}>
-        {intl.formatMessage(messages.noInput)}
-      </Button>
+      <Button onClick={() => {}}>{intl.formatMessage(messages.noInput)}</Button>
     </Background>
   )
 }

@@ -4,7 +4,7 @@ import Background from '@common/background'
 import InfoCard from '@common/infoCard'
 import Button from '@common/button'
 import style from './measurement.module.sass'
-import { routePath } from '../../appConfig'
+import { routePath } from '@src/appConfig'
 
 export default function() {
   const history = useHistory()
