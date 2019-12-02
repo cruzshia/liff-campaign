@@ -31,3 +31,12 @@ client/
 │ ├ utils/
 │ └ index.tsx
 ```
+
+### NET::ERR_CERT_INVALID
+
+For localhost only:
+Simply paste this in your chrome:
+
+```
+chrome://flags/#allow-insecure-localhost
+```

@@ -1,26 +1,42 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Background from '@common/background'
 import InfoCard from '@common/infoCard'
-import Button from '@common/button'
+import NextButton from '@common/nextButton'
 import style from './weightSetting.module.sass'
+import { routePath } from '@src/appConfig'
+import { useIntl } from 'react-intl'
+import messages from './messages'
+import { useHistory } from 'react-router-dom'
 
 export default function() {
+  const intl = useIntl()
+  const history = useHistory()
+  const handleRedirect = useCallback(
+    () => history.push(routePath.measurement),
+    [history]
+  )
+
   return (
     <Background>
-      <InfoCard title='体重' message='あなたの身長を教えてください'>
-        <select>
-          <option>50</option>
-        </select>
-        <p>aaaaaaaaa</p>
+      <InfoCard
+        title={intl.formatMessage(messages.weightTitle)}
+        message={intl.formatMessage(messages.weightMessage)}
+      >
+        <label>
+          <select>
+            <option>50</option>
+          </select>
+          {intl.formatMessage(messages.kg)}
+        </label>
+
+        <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>
       <div>
-        <img src='./' alt='3'></img>
-        <span>
-          あなたの身長を教えてくださいあなたの身長を教えてくださいあなたの身長を教えてください
-        </span>
+        <img src='./'></img>
+        <span>{intl.formatMessage(messages.reminder)}</span>
       </div>
       <div className={style.button}>
-        <Button>次へ</Button>
+        <NextButton onClick={handleRedirect}></NextButton>
       </div>
     </Background>
   )
