@@ -6,4 +6,6 @@ interface Window {
     getAccessToken: () => string
     getOS: () => string
   }
+
+  BodyBankEnterprise: BodyGram
 }

@@ -1,6 +1,6 @@
 export enum UserActionTypes {
-  'LOGIN' = '@User/LOGIN',
-  'SET_LOGIN_RESUILT' = '@User/SET_LOGIN_RESUILT'
+  LOGIN = '@User/LOGIN',
+  SET_LOGIN_RESUILT = '@User/SET_LOGIN_RESUILT'
 }
 
 export const loginAct = () => ({

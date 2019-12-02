@@ -1,8 +1,11 @@
 import { ActionsObservable, ofType } from 'redux-observable'
-import { catchError, map, exhaustMap } from 'rxjs/operators'
+import { catchError, mergeMap, exhaustMap } from 'rxjs/operators'
 import { UserActionTypes, setLoginResult } from '@reducer/user/actions'
+import { initBodyGramAct } from '@reducer/bodygram/actions'
 
 import { LIFF_ID } from '@src/appConfig'
+import { setToken } from '@src/utils/ajax'
+import { isDev } from '@src/appConfig'
 import { of, from } from 'rxjs'
 
 const userLineLoginEpic = (action$: ActionsObservable<any>) =>
@@ -14,12 +17,14 @@ const userLineLoginEpic = (action$: ActionsObservable<any>) =>
           liffId: LIFF_ID
         })
       ).pipe(
-        map(() => {
+        mergeMap(() => {
           if (!window.liff.isLoggedIn()) {
             window.liff.login()
-            return setLoginResult()
+            return of(setLoginResult())
           } else {
-            return setLoginResult(window.liff.getAccessToken())
+            const token = window.liff.getAccessToken()
+            setToken(isDev ? 'dev_token' : token)
+            return of(setLoginResult(token), initBodyGramAct())
           }
         }),
         catchError(() => of(setLoginResult()))

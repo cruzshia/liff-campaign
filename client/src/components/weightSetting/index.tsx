@@ -14,7 +14,7 @@ export default function() {
         <p>aaaaaaaaa</p>
       </InfoCard>
       <div>
-        <img src='./'></img>
+        <img src='./' alt='3'></img>
         <span>
           あなたの身長を教えてくださいあなたの身長を教えてくださいあなたの身長を教えてください
         </span>
