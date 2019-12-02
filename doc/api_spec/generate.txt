@@ -3,6 +3,8 @@ FORMAT: 1A
 <!-- include(data_structures/error.md) -->
 <!-- include(data_structures/bodygram.md) -->
 <!-- include(data_structures/user.md) -->
+<!-- include(data_structures/line_point.md) -->
 <!-- include(bodygram_api.md) -->
 <!-- include(user_api.md) -->
 <!-- include(estimation_log_api.md) -->
+<!-- include(line_point_api.md) -->
