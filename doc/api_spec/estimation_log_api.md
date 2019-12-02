@@ -14,7 +14,7 @@ Retrieve own estimation logs.
             authorization: user_token
 
 - Response 200 (application/json)
-  - Attributes (Array[BodyGramEstimationResponse])
+  - Attributes (array[BodyGramEstimationResponse])
 - Response 400 (application/json)
   - Attributes (BadRequest)
 - Response 401 (application/json)
