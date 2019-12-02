@@ -1,19 +1,23 @@
 import React from 'react'
-import style from './singleSelector.module.sass'
+import style from './infoCard.module.sass'
 
 interface Props {
   message: string
   title: string
 }
 
-export default function(props: React.PropsWithChildren<Props>) {
+export default function({
+  message,
+  title,
+  children
+}: React.PropsWithChildren<Props>) {
   return (
     <div className={style.background}>
-      <div className={style.dFlex}>
-        <div className={style.circle}>{props.title}</div>
-        <p>{props.message}</p>
+      <div className='d-flex'>
+        <div className={style.circle}>{title}</div>
+        <p>{message}</p>
       </div>
-      <div>{props.children}</div>
+      <div>{children}</div>
     </div>
   )
 }
