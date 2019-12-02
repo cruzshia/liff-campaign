@@ -7,6 +7,7 @@ export const loginAct = () => ({
   type: UserActionTypes.LOGIN
 })
 
-export const setLoginResult = () => ({
-  type: UserActionTypes.SET_LOGIN_RESUILT
+export const setLoginResult = (data?: string) => ({
+  type: UserActionTypes.SET_LOGIN_RESUILT,
+  data
 })

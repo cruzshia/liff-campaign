@@ -7,15 +7,9 @@
 レポジトリのトップレベルのディレクトリで以下を実行
 
 ```bash
-$ docker network create lambda-local # for the first time only
-$ docker-compose up
-$ npm install -g sequelize # for the first time only
-$ sequelize db:create # for the first time only
-$ sequelize db:migrate --env development
-$ npm run build # サーバーのビルド
-$ sam local start-api --env-vars env.json --docker-network lambda-local
 $ npm install --no-save
 $ npm start # 別のシェル
+$ HTTPS=true npm start # for create https localhost url
 ```
 
 ### 動作確認
@@ -33,5 +27,7 @@ client/
 │ ├ reducers/
 │ ├ epic/        redux-observable epics, inclding api calls
 │ ├ store/
+│ ├ types/       global typing define
+│ ├ utils/
 │ └ index.tsx
 ```

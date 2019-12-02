@@ -17,7 +17,7 @@ export default (
     case UserActionTypes.SET_LOGIN_RESUILT:
       return {
         ...state,
-        token: 'abc'
+        token: action.data
       }
     default:
       return state
