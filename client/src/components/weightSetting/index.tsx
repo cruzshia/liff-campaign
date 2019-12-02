@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Background from '@common/background'
 import InfoCard from '@common/infoCard'
 import NextButton from '@common/nextButton'
@@ -6,9 +6,15 @@ import style from './weightSetting.module.sass'
 import { routePath } from '../../appConfig'
 import { useIntl } from 'react-intl'
 import messages from './messages'
+import { useHistory } from 'react-router-dom'
 
 export default function() {
   const intl = useIntl()
+  const history = useHistory()
+  const handleRedirect = useCallback(
+    () => history.push(routePath.measurement),
+    [history]
+  )
 
   return (
     <Background>
@@ -30,7 +36,7 @@ export default function() {
         <span>{intl.formatMessage(messages.reminder)}</span>
       </div>
       <div className={style.button}>
-        <NextButton path={routePath.measurement}></NextButton>
+        <NextButton onClick={handleRedirect}></NextButton>
       </div>
     </Background>
   )

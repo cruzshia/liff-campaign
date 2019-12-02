@@ -1,15 +1,12 @@
-import React, { useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
+import React from 'react'
 import style from './button.module.sass'
 import { useIntl } from 'react-intl'
 import messages from './messages'
 
-export default function({ path }: { path: string }) {
+export default function({ onClick }: { onClick: () => void }) {
   const intl = useIntl()
-  const history = useHistory()
-  const handleRedirect = useCallback(() => history.push(path), [path])
   return (
-    <button onClick={handleRedirect} className={style.button}>
+    <button onClick={onClick} className={style.button}>
       {intl.formatMessage(messages.next)}
     </button>
   )
