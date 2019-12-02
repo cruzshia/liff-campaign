@@ -41,6 +41,8 @@
         "sequelize": "sequelize",
         "sequelize:model:create": "sequelize model:create",
         "test": "jest",
+        "build:dev": "NODE_ENV=development webpack",
+        "build:pro": "NODE_ENV=production webpack",
         "build": "NODE_ENV=production webpack",
         "lint": "tslint --fix --project 'tsconfig.json' -e './node_modules' -e './client' './src/**/*.{ts}'",
         "watch": "NODE_ENV=development webpack --watch"

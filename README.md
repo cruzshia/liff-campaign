@@ -4,10 +4,15 @@ This project contains source code and supporting files for a serverless applicat
 
 - `src` - Code for the application's Lambda function.
 - `events` - Invocation events that you can use to invoke the function.
-- `__tests__` - Unit tests for the application code. 
+- `__tests__` - Unit tests for the application code.
 - `template.yml` - A template that defines the application's AWS resources.
+- `env.json` - Environment valiable of Lambda function.
+- `docker-compose.yml` - Mysql environment configuration file using Docker.
+- `database.json` - Database connection information.
+- `built` - Output directory after build.
+- `client` - Front-end directory.
 
-## Deploy the application
+## Setup AWS SAM Environment
 
 To use the AWS SAM CLI, you need the following tools:
 
@@ -15,6 +20,73 @@ To use the AWS SAM CLI, you need the following tools:
 * AWS CLI - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and [configure it with your AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 * Node.js - [Install Node.js 10](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
+
+## Setup AWS credential
+
+* AWS credential information - [AWS credential(ACCESS Works)](https://acsmine.tok.access-company.com/redmine/projects/kao_health_dev/wiki/%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83#AWS-credentialACCESS-Works)
+
+```bash
+$aws configure
+$AWS Access Key ID: (Enter aws access key id)
+$AWS Secret Access Key: (Enter aws secret access key)
+$Default region name [ap-northeast-1]: ap-northeast-1
+$Default output format [json]: json
+```
+
+## How to start local server
+
+### Install npm libraries
+
+```bash
+$ npm install
+$ npm install -g sequelize
+```
+
+### Start MySQL(Docker)
+
+```bash
+$ docker network create lambda-local # for the first time only
+$ docker-compose up -d
+```
+
+### Create table and migration
+
+```bash
+$ sequelize db:create # for the first time only
+$ sequelize db:migrate --env development
+```
+
+### Start SAM local server(API Server)
+
+```bash
+$ npm run build:dev # If you use LINE login, build command is `npm run build`
+$ sam local start-api --env-vars env.json --docker-network lambda-local
+```
+
+## Develop MySQL table
+
+### Create database migration file
+
+$ sequelize migration:generate --name `name`
+
+### Database migration
+
+$ sequelize db:migrate --env development
+
+### Database migration rollback
+
+$ sequelize db:migrate:undo --env development
+
+## Unit tests
+
+Tests are defined in the `__tests__` folder in this project. Use `npm` to install the [Jest test framework](https://jestjs.io/) and run unit tests.
+
+```bash
+$ npm install
+$ npm run test
+```
+
+## Deploy the application
 
 To prepare the application for deployment, use the `sam package` command.
 
@@ -44,76 +116,6 @@ $ aws cloudformation describe-stacks \
     --output table
 ``` 
 
-## Use the AWS SAM CLI to build and test locally
-
-Build your application by using the `npm run build` command.
-
-```bash
-$ npm run build
-```
-
-The AWS SAM CLI installs dependencies that are defined in `package.json`, creates a deployment package, and saves it in the `.built` folder.
-
-Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
-
-Run functions locally and invoke them with the `sam local invoke` command.
-
-```bash
-$ sam local invoke putItemFunction --event events/event-post-item.json
-$ sam local invoke getAllItemsFunction --event events/event-get-all-items.json
-```
-
-The AWS SAM CLI can also emulate your application's API. Use the `sam local start-api` command to run the API locally on port 3000.
-
-```bash
-$ docker network create lambda-local # for the first time only
-$ docker-compose up -d
-$ npm install -g sequelize # for the first time only
-$ sequelize db:create # for the first time only
-$ sequelize db:migrate --env development
-$ sam local start-api --env-vars env.json --docker-network lambda-local
-$ curl http://localhost:3000/
-```
-
-The AWS SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
-
-```yaml
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /
-            Method: GET
-```
-
-The dead-letter queue is a location for Lambda to send events that could not be processed. It's only used if you invoke your function asynchronously, but it's useful here to show how you can modify your application's resources and function configuration.
-
-Deploy the updated application.
-
-```bash
-$ sam package \
-    --output-template-file packaged.yaml \
-    --s3-bucket BUCKET_NAME
-$ sam deploy \
-    --template-file packaged.yaml \
-    --stack-name sam-app \
-    --capabilities CAPABILITY_IAM
-```
-
-Open the [**Applications**](https://console.aws.amazon.com/lambda/home#/applications) page of the Lambda console, and choose your application. When the deployment completes, view the application resources on the **Overview** tab to see the new resource. Then, choose the function to see the updated configuration that specifies the dead-letter queue.
-
-## Create database migration file
-
-$ sequelize migration:generate --name `name`
-
-## Database migration
-
-$ sequelize db:migrate --env development
-
-## Database migration rollback
-
-$ sequelize db:migrate:undo --env development
-
 ## Fetch, tail, and filter Lambda function logs
 
 To simplify troubleshooting, the AWS SAM CLI has a command called `sam logs`. `sam logs` lets you fetch logs that are generated by your Lambda function from the command line. In addition to printing the logs on the terminal, this command has several nifty features to help you quickly find the bug.
@@ -122,15 +124,6 @@ To simplify troubleshooting, the AWS SAM CLI has a command called `sam logs`. `s
 
 ```bash
 $ sam logs -n putItemFunction --stack-name sam-app --tail
-```
-
-## Unit tests
-
-Tests are defined in the `__tests__` folder in this project. Use `npm` to install the [Jest test framework](https://jestjs.io/) and run unit tests.
-
-```bash
-$ npm install
-$ npm run test
 ```
 
 ## Cleanup
