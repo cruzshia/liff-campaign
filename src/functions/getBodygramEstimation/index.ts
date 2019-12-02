@@ -35,6 +35,7 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
                 status: 'requested',
                 waist_circumference: 80,
                 offal_fat: 20,
+                wc_diff: 0,
                 of_diff: 0,
                 week: 1,
                 created_at: '2019-11-13 18:34:52',
