@@ -1,0 +1,21 @@
+{
+  "infoSetting.birthdayMessage": "あなたの身長を教えてください",
+  "infoSetting.birthdayTitle": "生年月日",
+  "infoSetting.day": "日",
+  "infoSetting.female": "女性",
+  "infoSetting.genderMessage": "あなたの身長を教えてください",
+  "infoSetting.genderTitle": "性別",
+  "infoSetting.heightMessage": "あなたの身長を教えてください",
+  "infoSetting.heightTitle": "身長",
+  "infoSetting.input": "登録する",
+  "infoSetting.male": "男性",
+  "infoSetting.month": "月",
+  "infoSetting.noInput": "今はしない",
+  "infoSetting.year": "西曆",
+  "next": "次へ",
+  "weightSetting.hint": "あなたの身長を教えてください",
+  "weightSetting.kg": "kg",
+  "weightSetting.reminder": "あなたの身長を教えてくださいあなたの身長を教えてくださいあなたの身長を教えてください",
+  "weightSetting.weightMessage": "あなたの身長を教えてください",
+  "weightSetting.weightTitle": "体重"
+}
