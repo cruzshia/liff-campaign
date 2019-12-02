@@ -1,0 +1,21 @@
+{
+  "infoSetting.birthdayMessage": "Please input your birthday",
+  "infoSetting.birthdayTitle": "Birthday",
+  "infoSetting.day": "Day",
+  "infoSetting.female": "Female",
+  "infoSetting.genderMessage": "Please select your gender",
+  "infoSetting.genderTitle": "Gender",
+  "infoSetting.heightMessage": "Please select you height",
+  "infoSetting.heightTitle": "Height",
+  "infoSetting.input": "Input complete",
+  "infoSetting.male": "Male",
+  "infoSetting.month": "Month",
+  "infoSetting.noInput": "Cancel",
+  "infoSetting.year": "Year",
+  "next": "Next",
+  "weightSetting.hint": "Please choose the closest number",
+  "weightSetting.kg": "kg",
+  "weightSetting.reminder": "some reminder",
+  "weightSetting.weightMessage": "Please Input your weight",
+  "weightSetting.weightTitle": "Weight"
+}

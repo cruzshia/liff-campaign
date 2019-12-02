@@ -8,21 +8,38 @@ import InfoSetting from '@components/infoSetting'
 import WeightSetting from '@components/weightSetting'
 import Measurement from '@components/measurement'
 import Login from './containers/Login'
+import { IntlProvider } from 'react-intl'
+import ja from './translations/ja.json'
+import { routePath } from './appConfig'
 
 const store = configureStore()
 const App: React.FC = () => {
   return (
     <div>
       <Provider store={store}>
-        <Router>
-          <Login />
-          <Switch>
-            <Route exact path='/info_setting' component={InfoSetting} />
-            <Route exact path='/weight_setting' component={WeightSetting} />
-            <Route exact path='/measurement' component={Measurement} />
-            <Route exact path='/' component={Home} />
-          </Switch>
-        </Router>
+        <IntlProvider locale='ja' messages={ja}>
+          <Router>
+            <Login />
+            <Switch>
+              <Route
+                exact
+                path={routePath.infoSetting}
+                component={InfoSetting}
+              />
+              <Route
+                exact
+                path={routePath.weightSetting}
+                component={WeightSetting}
+              />
+              <Route
+                exact
+                path={routePath.measurement}
+                component={Measurement}
+              />
+              <Route exact path={routePath.root} component={Home} />
+            </Switch>
+          </Router>
+        </IntlProvider>
       </Provider>
     </div>
   )

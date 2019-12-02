@@ -6,5 +6,8 @@ export const PREFIX_PATH_AMAZON_S3 =
 export const LIFF_ID = REACT_APP_LIFF_ID || '1653573972-GMOV2QQK'
 
 export const routePath = {
-  root: '/'
+  root: '/',
+  infoSetting:'/info_setting',
+  weightSetting:'/weight_setting',
+  measurement:'/measurement'
 }
