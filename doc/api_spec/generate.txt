@@ -5,3 +5,4 @@ FORMAT: 1A
 <!-- include(data_structures/user.md) -->
 <!-- include(bodygram_api.md) -->
 <!-- include(user_api.md) -->
+<!-- include(estimation_log_api.md) -->
