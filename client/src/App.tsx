@@ -7,13 +7,15 @@ import Home from './containers/home'
 import InfoSetting from '@components/infoSetting'
 import WeightSetting from '@components/weightSetting'
 import Measurement from '@components/measurement'
-const store = configureStore()
+import Login from './containers/Login'
 
+const store = configureStore()
 const App: React.FC = () => {
   return (
     <div>
       <Provider store={store}>
         <Router>
+          <Login />
           <Switch>
             <Route exact path='/info_setting' component={InfoSetting} />
             <Route exact path='/weight_setting' component={WeightSetting} />
