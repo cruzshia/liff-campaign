@@ -30,6 +30,7 @@
 - `status`               (BodyGramStatus, required) - estimation status. If status changed `completed`, `waist_circumference` and `offal_fat` are set.
 - `waist_circumference`: `80.0` (number, optional) - Nullable. Estimated waist circumference.
 - `offal_fat`:           `20.0` (number, optional) - Nullable. Estimated offal fat.
+- `wc_diff`:             `0.0` (number, optional) - Nullable.
 - `of_diff`:             `0.0` (number, optional) - Nullable.
 - `week`:                `1` (number, required) - times of estimation.
 - `created_at`:          `2019-11-13 18:34:52` (string, required)

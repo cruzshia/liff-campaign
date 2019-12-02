@@ -13,7 +13,7 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        type: Sequelize.ENUM('requested', 'pending', 'estimated', 'completed'),
+        type: Sequelize.ENUM('requested', 'pending', 'completed'),
         defaultValue: 'requested'
       },
       waist_circumference: {

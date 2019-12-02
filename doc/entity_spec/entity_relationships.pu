@@ -32,6 +32,7 @@ package "Healthya LINE Campaign" as application {
     status: string
     waist_circumference: number
     offal_fat: number
+    wc_diff: number
     of_diff: number
     week: number
     created_at: datetime
