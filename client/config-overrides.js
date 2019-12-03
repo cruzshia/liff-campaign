@@ -23,8 +23,7 @@ module.exports = function override(config) {
       '@src': srcDir,
       '@components': srcDir + '/components',
       '@epics': srcDir + '/epics',
-      '@reducer': srcDir + '/reducer',
-      '@common': srcDir + '/common'
+      '@reducer': srcDir + '/reducer'
     }
   }
 

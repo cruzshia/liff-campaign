@@ -1,22 +1,12 @@
-import React, { useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
-import Background from '@common/background'
-import InfoCard from '@src/common/infoCard'
-import style from './infoSetting.module.sass'
+import React from 'react'
+import Background from '@components/background'
+import InfoCard from '@components/infoCard'
+import style from '../infoSetting.module.sass'
 import { useIntl } from 'react-intl'
-import messages from './messages'
-import Button from '@common/button'
-import { routePath } from '@src/appConfig'
+import messages from '../messages'
 
-export default function InfoSetting() {
+export default function() {
   const intl = useIntl()
-  let history = useHistory()
-
-  const handlePageChange = useCallback(
-    () => history.push(routePath.weightSetting),
-    [history]
-  )
-
   return (
     <Background>
       <InfoCard
@@ -63,10 +53,6 @@ export default function InfoSetting() {
           <option>168cm</option>
         </select>
       </InfoCard>
-      <Button onClick={handlePageChange}>
-        {intl.formatMessage(messages.input)}
-      </Button>
-      <Button onClick={() => {}}>{intl.formatMessage(messages.noInput)}</Button>
     </Background>
   )
 }
