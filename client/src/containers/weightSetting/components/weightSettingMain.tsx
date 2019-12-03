@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react'
-import Background from '@common/background'
-import InfoCard from '@common/infoCard'
-import NextButton from '@common/nextButton'
-import style from './weightSetting.module.sass'
+import Background from '@components/background'
+import InfoCard from '@components/infoCard'
+import Button from '@components/button'
 import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
-import messages from './messages'
+import messages from '../messages'
 import { useHistory } from 'react-router-dom'
 
 export default function() {
@@ -15,7 +14,6 @@ export default function() {
     () => history.push(routePath.measurement),
     [history]
   )
-
   return (
     <Background>
       <InfoCard
@@ -32,11 +30,11 @@ export default function() {
         <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>
       <div>
-        <img src='./'></img>
+        <img src='/' alt='' />
         <span>{intl.formatMessage(messages.reminder)}</span>
       </div>
-      <div className={style.button}>
-        <NextButton onClick={handleRedirect}></NextButton>
+      <div>
+        <Button onClick={handleRedirect} />
       </div>
     </Background>
   )
