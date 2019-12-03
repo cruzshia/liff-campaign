@@ -3,14 +3,15 @@ import rootReducer, { initState } from '@reducer/index'
 import rootEpic from '@epics/index'
 import { createLogger } from 'redux-logger'
 import { createEpicMiddleware } from 'redux-observable'
+import { isDev } from '@src/appConfig'
 
 const middleware: Middleware[] = []
 const logger: any = createLogger({ collapsed: true })
 
-process.env.NODE_ENV !== 'production' && middleware.push(logger)
+isDev && middleware.push(logger)
 
 const bindMiddleware = (middleware: any) => {
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDev) {
     const logger: any = createLogger({ diff: true, collapsed: true })
     return applyMiddleware(...middleware, logger)
   }
