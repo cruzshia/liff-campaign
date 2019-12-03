@@ -6,7 +6,6 @@
       "@components/*": ["src/components/*"],
       "@epics/*": ["src/epics/*"],
       "@reducer/*": ["src/reducer/*"],
-      "@common/*": ["src/common/*"]
     }
   }
 }
