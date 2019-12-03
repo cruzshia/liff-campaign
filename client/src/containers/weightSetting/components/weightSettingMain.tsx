@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
-import NextButton from '@components/nextButton'
+import Button from '@components/button'
 import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
 import messages from '../messages'
@@ -30,11 +30,11 @@ export default function() {
         <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>
       <div>
-        <img src='./'></img>
+        <img src='/' alt='' />
         <span>{intl.formatMessage(messages.reminder)}</span>
       </div>
       <div>
-        <NextButton onClick={handleRedirect}></NextButton>
+        <Button onClick={handleRedirect} />
       </div>
     </Background>
   )

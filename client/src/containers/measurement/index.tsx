@@ -2,7 +2,7 @@ import React , { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { routePath } from '@src/appConfig'
-import Measurement from './components'
+import MeasurementMethod from './components/measurementMethod'
 
 export default function() {
   const history = useHistory()
@@ -12,5 +12,5 @@ export default function() {
   const handleUseInput = useCallback(() => history.push(routePath.root), [
     history
   ])
-  return <Measurement handleUseCamera={handleUseCamera} handleUseInput={handleUseInput}/>
+  return <MeasurementMethod handleUseCamera={handleUseCamera} handleUseInput={handleUseInput}/>
 }
