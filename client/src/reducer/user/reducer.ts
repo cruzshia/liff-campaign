@@ -19,6 +19,8 @@ export default (
         ...state,
         token: action.data
       }
+    case UserActionTypes.CLEAR_LOGIN_STATE:
+      return userInitState
     default:
       return state
   }

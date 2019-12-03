@@ -9,3 +9,9 @@ interface Window {
 
   BodyBankEnterprise: BodyGram
 }
+
+interface HTTPResponse<T> {
+  data: T
+  status: number
+  error?: Error
+}

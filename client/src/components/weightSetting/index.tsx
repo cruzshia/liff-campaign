@@ -32,7 +32,7 @@ export default function() {
         <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>
       <div>
-        <img src='./'></img>
+        <img src='./' alt='4'></img>
         <span>{intl.formatMessage(messages.reminder)}</span>
       </div>
       <div className={style.button}>
