@@ -3,7 +3,6 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('line_points', {
       uid: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       point: {
@@ -13,6 +12,9 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
+      },
+      week: {
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
