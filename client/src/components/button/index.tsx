@@ -15,7 +15,7 @@ export default function({
       {children ? children : intl.formatMessage(messages.next)}
     </button>
   ) : (
-    <Link to={path ? path : '/'} className={style.button}>
+    <Link to={path} className={style.button}>
       {children ? children : intl.formatMessage(messages.next)}
     </Link>
   )
