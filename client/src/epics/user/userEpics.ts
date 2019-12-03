@@ -47,10 +47,7 @@ export const getUserInfoEpic = (action$: ActionsObservable<AnyAction>) =>
     ofType(UserActionTypes.LOGIN),
     exhaustMap(() =>
       from(UserService.getUserAjax()).pipe(
-        map(res => {
-          console.log(999999, res)
-          return { type: 'asdasd' }
-        }),
+        map(res => ({ type: 'asdasd', data: res.data })),
         catchError(() => of({ type: 'get failed' }))
       )
     )
