@@ -32,7 +32,7 @@ Retrieve own user data.
     - Headers
 
             x-api-key: xxx
-            token: user_token
+            authorization: user_token
 
 - Response 200 (application/json)
   - Attributes (UserData)
@@ -53,7 +53,7 @@ Update own user data.
 
             Content-Type: application/json
             x-api-key: xxx
-            token: user_token
+            authorization: user_token
 
     - Attributes (UpdateUserRequestBody)
 

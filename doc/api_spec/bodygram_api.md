@@ -12,7 +12,7 @@ Get user token.
 
             Content-Type: application/json
             x-api-key: xxx
-            token: user_token
+            authorization: user_token
 
 - Response 200 (application/json)
   - Attributes (BodyGramTokenResponse)
@@ -35,7 +35,7 @@ Retrieve own estimation result.
     - Headers
 
             x-api-key: xxx
-            token: user_token
+            authorization: user_token
 
 - Response 200 (application/json)
   - Attributes (BodyGramEstimationResponse)
