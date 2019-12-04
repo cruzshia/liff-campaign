@@ -1,16 +1,16 @@
 import { Sequelize, Model, DataTypes } from 'sequelize'
 
-const TABLE_NAME = 'estimation_logs'
+const TABLE_NAME = 'users'
 
-class EstimationLogs extends Model {
+class Users extends Model {
   public uid!: string
-  public rid!: string
-  public status!: 'requested' | 'pending' | 'completed'
+  public gender!: "male" | "female"
+  public birthday!: string
+  public height: number
+  public weight: number | null
   public waist_circumference: number | null
   public offal_fat: number | null
-  public wc_diff: number | null
-  public of_diff: number | null
-  public week!: number
+  public is_entry_contest!: boolean
   public created_at: Date
   public updated_at: Date
 
@@ -19,17 +19,22 @@ class EstimationLogs extends Model {
       {
         uid: {
           allowNull: false,
+          primaryKey: true,
           type: DataTypes.STRING
         },
-        rid: {
+        gender: {
           allowNull: false,
-          primaryKey: true,
-          type: DataTypes.STRING,
+          type: DataTypes.STRING
         },
-        status: {
+        birthday: {
           allowNull: false,
-          type: DataTypes.ENUM('requested', 'pending', 'completed'),
-          defaultValue: 'requested'
+          type: DataTypes.STRING
+        },
+        height: {
+          type: DataTypes.FLOAT,
+        },
+        weight: {
+          type: DataTypes.FLOAT,
         },
         waist_circumference: {
           type: DataTypes.FLOAT,
@@ -37,16 +42,9 @@ class EstimationLogs extends Model {
         offal_fat: {
           type: DataTypes.FLOAT,
         },
-        wc_diff: {
-          type: DataTypes.FLOAT,
-        },
-        of_diff: {
-          type: DataTypes.FLOAT,
-        },
-        week: {
+        is_entry_contest: {
           allowNull: false,
-          type: DataTypes.INTEGER,
-          defaultValue: 1
+          type: DataTypes.BOOLEAN,
         },
         created_at: {
           type: DataTypes.DATE,
@@ -71,10 +69,10 @@ class EstimationLogs extends Model {
 }
 
 const factory = (sequelize: Sequelize) => {
-  EstimationLogs.attach(sequelize)
+  Users.attach(sequelize)
 
-  return EstimationLogs
+  return Users
 }
 
-export { EstimationLogs, factory }
+export { Users, factory }
 

@@ -2,7 +2,7 @@ import { APIGatewayEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from '
 
 import db from '../../db/models'
 import { OK, BadRequest } from '../../lib/response'
-import { EstimationLogs } from 'src/db/models/estimationLogs'
+import { convertResponse } from '../../model/estimation_log'
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   if (event.httpMethod !== 'POST') {
@@ -64,21 +64,6 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   // All log statements are written to CloudWatch
   console.info(`response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`)
   return response
-}
-
-const convertResponse = (body: EstimationLogs) => {
-  return {
-    uid: body.uid,
-    rid: body.rid,
-    status: body.status,
-    waist_circumference: body.waist_circumference,
-    offal_fat: body.offal_fat,
-    wc_diff: body.wc_diff,
-    of_diff: body.of_diff,
-    week: body.week,
-    created_at: body.created_at,
-    updated_at: body.updated_at,
-  }
 }
 
 export {handler}
