@@ -8,6 +8,16 @@ export interface CreateUserRequestBody {
   is_entry_contest: boolean
 }
 
+export interface UpdateUserRequestBody {
+  gender?: 'male' | 'female'
+  birthday?: string
+  height?: number
+  weight?: number
+  waist_circumference?: number
+  offal_fat?: number
+  is_entry_contest?: boolean
+}
+
 export const convertResponse = (body: Users) => {
   return {
     uid: body.uid,

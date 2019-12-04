@@ -22,6 +22,10 @@ export const UnAuthorized = (message: string): APIGatewayProxyResult => {
   return commonResponse(401, { message })
 }
 
+export const NotFound = (message: string): APIGatewayProxyResult => {
+  return commonResponse(404, { message })
+}
+
 export const OK = (e: any): APIGatewayProxyResult => {
   return commonResponse(200, e)
 }

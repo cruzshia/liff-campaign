@@ -51,6 +51,11 @@ Resources:
       Description: Get token of BodyBank API.
       Environment:
         Variables:
+          DB_HOST: !Ref DB_HOST
+          DB_PORT: 3306
+          DB_USER: !Ref DB_USER
+          DB_PASSWORD: !Ref DB_PASSWORD
+          DB_NAME: !Ref DB_NAME
           hostUrl: "https://api.kao-dev.enterprise.bodybank.com"
           token: "vvgSvuKwwV3N4EQ9AX0Is8KMFwKBoV6t57YdaUmb"
       Events:
@@ -68,6 +73,13 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: Get estimation result of BodyBank API.
+      Environment:
+        Variables:
+          DB_HOST: !Ref DB_HOST
+          DB_PORT: 3306
+          DB_USER: !Ref DB_USER
+          DB_PASSWORD: !Ref DB_PASSWORD
+          DB_NAME: !Ref DB_NAME
       Events:
         Api:
           Type: Api
@@ -107,8 +119,11 @@ Resources:
       Description: Retrieve own user data.
       Environment:
         Variables:
-          hostUrl: "https://api.kao-dev.enterprise.bodybank.com"
-          token: "vvgSvuKwwV3N4EQ9AX0Is8KMFwKBoV6t57YdaUmb"
+          DB_HOST: !Ref DB_HOST
+          DB_PORT: 3306
+          DB_USER: !Ref DB_USER
+          DB_PASSWORD: !Ref DB_PASSWORD
+          DB_NAME: !Ref DB_NAME
       Events:
         userMeShow:
           Type: Api
