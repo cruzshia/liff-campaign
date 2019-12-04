@@ -14,8 +14,12 @@ export default defineMessages({
     id: PREFIX + 'hint',
     defaultMessage: 'Please choose the closest number'
   },
-  reminder:{
+  reminder: {
     id: PREFIX + 'reminder',
     defaultMessage: 'some reminder'
+  },
+  pageTitle: {
+    id: PREFIX + 'pageTitle',
+    defaultmessage: 'Weight'
   }
 })

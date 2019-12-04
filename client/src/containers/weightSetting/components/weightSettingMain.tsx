@@ -7,6 +7,7 @@ import { useIntl } from 'react-intl'
 import messages from '../messages'
 import { useHistory } from 'react-router-dom'
 import Select from '@components/select'
+import PageTitle from '@components/pageTitle'
 
 export default function() {
   const intl = useIntl()
@@ -17,11 +18,14 @@ export default function() {
   )
   return (
     <Background>
+      <PageTitle>{intl.formatMessage(messages.pageTitle)}</PageTitle>
       <InfoCard
         title={intl.formatMessage(messages.weightTitle)}
         message={intl.formatMessage(messages.weightMessage)}
       >
-        <Select unit='kg' name='weight'> <option>50</option></Select>
+        <Select unit='kg' name='weight'>
+          <option>50</option>
+        </Select>
 
         <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>
