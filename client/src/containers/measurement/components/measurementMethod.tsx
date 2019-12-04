@@ -21,14 +21,14 @@ export default function({ handleUseInput, handleUseCamera }: Props) {
       >
         <div className={style.border}></div>
         <div>
-          <img src='/' alt=''/>
+          <img src='/' alt='' />
         </div>
       </InfoCard>
       <div>
-        <span>
+        <span className='pre-wrap'>
           {intl.formatMessage(messages.reminder)}
         </span>
-        <img src='/' alt=''/>
+        <img src='/' alt='' />
       </div>
       <div>
         <Button onClick={handleUseCamera}>

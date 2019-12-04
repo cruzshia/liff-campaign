@@ -6,6 +6,7 @@ import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
 import messages from '../messages'
 import { useHistory } from 'react-router-dom'
+import Select from '@components/select'
 
 export default function() {
   const intl = useIntl()
@@ -20,12 +21,7 @@ export default function() {
         title={intl.formatMessage(messages.weightTitle)}
         message={intl.formatMessage(messages.weightMessage)}
       >
-        <label>
-          <select>
-            <option>50</option>
-          </select>
-          {intl.formatMessage(messages.kg)}
-        </label>
+        <Select unit='kg' name='weight'> <option>50</option></Select>
 
         <p>{intl.formatMessage(messages.weightHint)}</p>
       </InfoCard>

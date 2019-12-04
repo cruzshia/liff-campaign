@@ -1,9 +1,9 @@
 import React from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
-import style from '../infoSetting.module.sass'
 import { useIntl } from 'react-intl'
 import messages from '../messages'
+import Select from '@components/select'
 
 export default function() {
   const intl = useIntl()
@@ -13,45 +13,49 @@ export default function() {
         title={intl.formatMessage(messages.genderTitle)}
         message={intl.formatMessage(messages.genderMessage)}
       >
-        <label>
-          <input type='radio' />
-          {intl.formatMessage(messages.male)}
-        </label>
-        <label>
-          <input type='radio' />
-          {intl.formatMessage(messages.female)}
-        </label>
+        <div className='d-flex justify-center'>
+          <label>
+            <input type='radio' />
+            {intl.formatMessage(messages.male)}
+          </label>
+          <label>
+            <input type='radio' />
+            {intl.formatMessage(messages.female)}
+          </label>
+        </div>
       </InfoCard>
       <InfoCard
         title={intl.formatMessage(messages.birthdayTitle)}
         message={intl.formatMessage(messages.birthdayMessage)}
       >
-        <label>
-          {intl.formatMessage(messages.year)}
-          <select className={style.select}>
-            <option>168cm </option>
-          </select>
-        </label>
-        <label>
-          {intl.formatMessage(messages.month)}
-          <select className={style.select}>
-            <option>168cm </option>
-          </select>
-        </label>
-        <label>
-          {intl.formatMessage(messages.day)}
-          <select className={style.select}>
-            <option>168cm </option>
-          </select>
-        </label>
+        <div className='d-flex justify-between w-100'>
+          <div>
+            {intl.formatMessage(messages.year)}
+            <Select name='year' unit=''>
+              <option>168cm </option>
+            </Select>
+          </div>
+          <div>
+            {intl.formatMessage(messages.month)}
+            <Select name='month' unit=''>
+              <option>168cm </option>
+            </Select>
+          </div>
+          <div>
+            {intl.formatMessage(messages.day)}
+            <Select name='day' unit=''>
+              <option>168cm </option>
+            </Select>
+          </div>
+        </div>
       </InfoCard>
       <InfoCard
         title={intl.formatMessage(messages.heightTitle)}
         message={intl.formatMessage(messages.heightMessage)}
       >
-        <select className={style.select}>
+        <Select unit='cm' name='height'>
           <option>168cm</option>
-        </select>
+        </Select>
       </InfoCard>
     </Background>
   )

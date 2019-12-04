@@ -9,7 +9,9 @@ export const LIFF_ID = REACT_APP_LIFF_ID || '1653573972-GMOV2QQK'
 export const isDev = NODE_ENV !== 'production'
 export const routePath = {
   root: '/',
-  infoSetting: '/info_setting',
-  weightSetting: '/weight_setting',
-  measurement: '/measurement'
+  infoSetting:'/info_setting',
+  weightSetting:'/weight_setting',
+  measurement:'/measurement',
+  waistSizeInput:'/waist_size_input',
+  cameraInput: '/camera'
 }

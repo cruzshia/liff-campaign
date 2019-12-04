@@ -13,11 +13,13 @@ export default function({
 }: React.PropsWithChildren<Props>) {
   return (
     <div className={style.background}>
-      <div className='d-flex'>
-        <div className={style.circle}>{title}</div>
-        <p>{message}</p>
+      <div className='flex-center-center'>
+        <div className={`flex-center-center ${style.circle}`}>
+          <img alt={title} src='/' />
+        </div>
+        <p className={style.message}>{message}</p>
       </div>
-      <div>{children}</div>
+      <div className={style.children}>{children}</div>
     </div>
   )
 }

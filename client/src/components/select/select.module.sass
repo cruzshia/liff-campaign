@@ -1,0 +1,48 @@
+@import '../../style/variables.sass'
+
+$select-height: 1.5rem
+$select-width: 4rem
+$select-border: .2rem
+
+.arrow
+  background-color: $light-green
+  display: block
+  width: $select-height
+  height: $select-height
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-left: -$select-height
+
+.arrow::after
+  content: ''
+  width: 0
+  height: 0
+  border-left: .4rem solid rgba(0,0,0,0)
+  border-right: .4rem solid rgba(0,0,0,0)
+  border-top: .6rem solid #ffffff
+
+.select
+  display: block
+  appearance: none
+  -moz-appearance: none
+  -webkit-appearance: none
+  border: none
+  border-radius: 0
+  width: $select-width + $select-height
+  height: $select-height
+  padding-right: $select-height
+  padding-left: .5rem
+  z-index: 1
+  background: none
+  
+.select_border
+  border: $select-border solid $gray
+  height: $select-height
+  width: $select-width
+  position: absolute
+  z-index: 0
+
+.unit
+  margin-left: .5rem
+

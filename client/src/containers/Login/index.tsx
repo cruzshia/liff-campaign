@@ -13,10 +13,5 @@ export default function Login() {
     dispatch(loginAct())
   }, [dispatch])
 
-  return token ? (
-    <div>
-      line user token: <br />
-      {token}
-    </div>
-  ) : null
+  return null
 }

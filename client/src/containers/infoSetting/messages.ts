@@ -3,6 +3,10 @@ import { defineMessages } from 'react-intl'
 const PREFIX = 'infoSetting.'
 
 export default defineMessages({
+  pageTitle: {
+    id: PREFIX + 'pageTitle',
+    defaultMessage: 'Information Setting'
+  },
   genderTitle: {
     id: PREFIX + 'genderTitle',
     defaultMessage: 'Gender'

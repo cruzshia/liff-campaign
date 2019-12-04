@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store'
-import './App.module.sass'
+import './App.sass'
 import Home from './containers/home'
 import InfoSetting from '@src/containers/infoSetting'
 import WeightSetting from '@src/containers/weightSetting'
@@ -11,6 +11,7 @@ import Login from './containers/Login'
 import { IntlProvider } from 'react-intl'
 import ja from './translations/ja.json'
 import { routePath } from './appConfig'
+import WaistSizeInput from '@src/containers/waistSizeInput'
 
 const store = configureStore()
 const App: React.FC = () => {
@@ -35,6 +36,11 @@ const App: React.FC = () => {
                 exact
                 path={routePath.measurement}
                 component={Measurement}
+              />
+              <Route
+                exact
+                path={routePath.waistSizeInput}
+                component={WaistSizeInput}
               />
               <Route exact path={routePath.root} component={Home} />
             </Switch>
