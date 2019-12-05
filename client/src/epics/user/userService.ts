@@ -1,10 +1,16 @@
 import ajax from '@src/utils/ajax'
+import { UserModelType, IncomingUserModelType } from '@reducer/user/userModel'
+import { toUserPayload } from './userUtil'
 
-export interface IncomingUserData {
-  uid: string
-  waist_circumference?: number
-  offal_fat?: number
+export const getUserAjax = (): Promise<HTTPResponse<IncomingUserModelType>> => {
+  return ajax.get('/users/me')
 }
+export const createUserAjax = (
+  data: UserModelType
+): Promise<HTTPResponse<IncomingUserModelType>> =>
+  ajax.post('/users', toUserPayload(data))
 
-export const getUserAjax = (): Promise<HTTPResponse<IncomingUserData>> =>
-  ajax.get('/users/me')
+export const updareUserAjax = (
+  data: UserModelType
+): Promise<HTTPResponse<IncomingUserModelType>> =>
+  ajax.put('/users', toUserPayload(data))

@@ -1,7 +1,8 @@
 interface Window {
   liff: {
     init: (data: any) => Promise<any>
-    login: any
+    login: () => void
+    logout: () => void
     isLoggedIn: () => boolean
     getAccessToken: () => string
     getOS: () => string

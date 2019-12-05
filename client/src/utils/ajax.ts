@@ -6,13 +6,11 @@ const axiosInstance = axios.create({
 })
 
 export const setToken = (token: string): void => {
-  axiosInstance.defaults.headers['token'] = token
-  axiosInstance.defaults.headers['Authorization'] = token
+  axiosInstance.defaults.headers.common['Authorization'] = token
 }
 
 export const removeToken = (): void => {
-  delete axiosInstance.defaults.headers['token']
-  delete axiosInstance.defaults.headers['Authorization']
+  delete axiosInstance.defaults.headers.common['Authorization']
 }
 
 export default axiosInstance

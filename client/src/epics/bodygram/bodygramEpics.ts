@@ -3,15 +3,23 @@ import { catchError, map, exhaustMap, filter } from 'rxjs/operators'
 import {
   BodyActionTypes,
   initBodyGramSuccessAct,
+  initBodyGramErrorAct,
   CreateEstimationActType,
-  createEstimationSuccess
+  createEstimationSuccessAct,
+  createEstimationErrorAct,
+  getEstimationFailAct,
+  setEstimationResult,
+  GetEstimationActType
 } from '@reducer/bodygram/actions'
 
 import { Action } from 'redux'
 import { StoreState } from '@reducer/index'
 import bodybank, { initializeBodybank } from '@src/utils/bodygram'
+import { responstToEstimation } from './bodygramUtil'
+import { getEstimationAjax } from './bodygramService'
 import Logger from '@src/utils/logger'
 import { of, from } from 'rxjs'
+import { unAthorizedCheck } from '../errorUtils'
 
 const initBodyGramEpic = (
   action$: ActionsObservable<Action>,
@@ -26,10 +34,9 @@ const initBodyGramEpic = (
     exhaustMap(() =>
       from(initializeBodybank()).pipe(
         map(() => initBodyGramSuccessAct()),
-        // TODO: error handler
         catchError(error => {
           Logger.log('initialize body bank error: ', error)
-          return of({ type: BodyActionTypes.INITIALIZE_BODYGRAM_FAILED })
+          return of(unAthorizedCheck(error, initBodyGramErrorAct()))
         })
       )
     )
@@ -42,16 +49,29 @@ export const createEstimationEpic = (
     ofType(BodyActionTypes.CREATE_ESTIMATION),
     exhaustMap(action =>
       from([bodybank.createEstimationRequest(action.data)]).pipe(
-        map(() => {
-          return createEstimationSuccess()
-        }),
-        // TODO: error handler
+        map(() => createEstimationSuccessAct()),
         catchError(error => {
           Logger.log('create body bank estimation error: ', error)
-          return of({ type: BodyActionTypes.CREATE_ESTIMATION_FAILED })
+          return of(unAthorizedCheck(error, createEstimationErrorAct()))
         })
       )
     )
   )
 
-export default [initBodyGramEpic, createEstimationEpic]
+export const getEstimationEpic = (
+  action$: ActionsObservable<GetEstimationActType>
+) =>
+  action$.pipe(
+    ofType(BodyActionTypes.CREATE_ESTIMATION),
+    exhaustMap(action =>
+      from(getEstimationAjax(action.data)).pipe(
+        map(res => setEstimationResult(responstToEstimation(res.data))),
+        catchError(error => {
+          Logger.log('get estimation error: ', error)
+          return of(unAthorizedCheck(error, getEstimationFailAct()))
+        })
+      )
+    )
+  )
+
+export default [initBodyGramEpic, createEstimationEpic, getEstimationEpic]

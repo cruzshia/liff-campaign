@@ -25,6 +25,7 @@ const App: React.FC = () => {
           <Router>
             <Login />
             <Switch>
+              <Route exact path={routePath.infoSetting} component={Login} />
               <Route
                 exact
                 path={routePath.infoSetting}

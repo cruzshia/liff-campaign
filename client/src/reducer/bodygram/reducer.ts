@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import { BodyActionTypes } from './actions'
+import { UserActionTypes } from '../user/actions'
 
 export interface BodygramStateType {
   intialized: boolean
@@ -34,6 +35,8 @@ export default (
         intialized: false,
         intializing: true
       }
+    case UserActionTypes.LOGOUT_CLEAR_STATE:
+      return bodygramInitState
     default:
       return state
   }
