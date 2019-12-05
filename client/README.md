@@ -20,15 +20,17 @@ $ HTTPS=true npm start # for create https localhost url
 
 ```
 client/
-├ public/        index.html のみ。画像等は /priv/static/app/ 以下に配置する
+├ public/          index.html のみ。画像等は /priv/static/app/ 以下に配置する
 ├ src/
-│ ├ appConfig/   API_PATH などの定数と routePath の定義
-│ ├ containers/  container components, which access reducer states
+│ ├ appConfig/     API_PATH などの定数と routePath の定義
+│ ├ containers/    container components, which access reducer states
 │ ├ reducers/
-│ ├ epic/        redux-observable epics, inclding api calls
+│ ├ epic/          redux-observable epics, inclding api calls
 │ ├ store/
-│ ├ types/       global typing define
+│ ├ translations/  currently support ja and en only
+│ ├ types/         global typing define
 │ ├ utils/
+│ ├ libs/          external sample codes, e.g. Camera utils
 │ └ index.tsx
 ```
 

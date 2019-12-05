@@ -23,8 +23,7 @@ export default function Login() {
   // login redirect if in login path
   const isLoginRedirect = userChecked && token && location.pathname === '/'
   useEffect(() => {
-    isLoginRedirect &&
-      history.push(profile ? routePath.waistSizeInput : routePath.infoSetting)
+    isLoginRedirect && history.push(profile ? routePath.waistSizeInput : routePath.infoSetting)
   }, [isLoginRedirect, history, profile])
 
   return null

@@ -16,6 +16,8 @@ import InfoSummary from '@src/containers/infoSummary'
 import UserTerms from '@src//containers/userTerms'
 import CameraTutorial from '@src/containers/cameraTutorial'
 
+import BodyPhotoCapture from '@src/containers/BodyPhotoCapture'
+
 const store = configureStore()
 const App: React.FC = () => {
   return (
@@ -25,32 +27,12 @@ const App: React.FC = () => {
           <Router>
             <Login />
             <Switch>
-              <Route exact path={routePath.infoSetting} component={Login} />
-              <Route
-                exact
-                path={routePath.infoSetting}
-                component={InfoSetting}
-              />
-              <Route
-                exact
-                path={routePath.weightSetting}
-                component={WeightSetting}
-              />
-              <Route
-                exact
-                path={routePath.measurement}
-                component={Measurement}
-              />
-              <Route
-                exact
-                path={routePath.waistSizeInput}
-                component={WaistSizeInput}
-              />
-              <Route
-                exact
-                path={routePath.infoSummary}
-                component={InfoSummary}
-              />
+              <Route exact path='/camera' component={BodyPhotoCapture} />
+              <Route exact path={routePath.infoSetting} component={InfoSetting} />
+              <Route exact path={routePath.weightSetting} component={WeightSetting} />
+              <Route exact path={routePath.measurement} component={Measurement} />
+              <Route exact path={routePath.waistSizeInput} component={WaistSizeInput} />
+              <Route exact path={routePath.infoSummary} component={InfoSummary} />
               <Route exact path={routePath.userTerms} component={UserTerms} />
               <Route exact path={routePath.cameraTutorial} component={CameraTutorial} />
               <Route exact path={routePath.root} component={Home} />

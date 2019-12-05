@@ -59,7 +59,8 @@
     "trailingComma": "none",
     "singleQuote": true,
     "semi": false,
-    "jsxSingleQuote": true
+    "jsxSingleQuote": true,
+    "printWidth": 120
   },
   "proxy": "http://localhost:3000"
 }
