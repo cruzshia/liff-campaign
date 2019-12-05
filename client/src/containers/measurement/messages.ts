@@ -22,5 +22,5 @@ export default defineMessages({
   useInput: {
     id: PREFIX + 'useInput',
     defaultMessage: 'Check manually'
-  }
+  },
 })

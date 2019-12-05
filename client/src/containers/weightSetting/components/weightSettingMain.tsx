@@ -17,25 +17,29 @@ export default function() {
     [history]
   )
   return (
-    <Background>
-      <PageTitle>{intl.formatMessage(messages.pageTitle)}</PageTitle>
-      <InfoCard
-        title={intl.formatMessage(messages.weightTitle)}
-        message={intl.formatMessage(messages.weightMessage)}
-      >
-        <Select unit='kg' name='weight'>
-          <option>50</option>
-        </Select>
+    <div className='h-100vh d-flex flex-column'>
+      <PageTitle>{intl.formatMessage(messages.weightTitle)}</PageTitle>
+      <Background>
+        <InfoCard
+          title={intl.formatMessage(messages.weightTitle)}
+          message={intl.formatMessage(messages.weightMessage)}
+        >
+          <Select unit='kg' name='weight'>
+            <option>50</option>
+          </Select>
 
-        <p>{intl.formatMessage(messages.weightHint)}</p>
-      </InfoCard>
-      <div>
-        <img src='/' alt='' />
-        <span>{intl.formatMessage(messages.reminder)}</span>
-      </div>
-      <div>
-        <Button onClick={handleRedirect} />
-      </div>
-    </Background>
+          <p>{intl.formatMessage(messages.weightHint)}</p>
+        </InfoCard>
+        <div>
+          <img src='/' alt='' />
+          <span className='pre-wrap'>
+            {intl.formatMessage(messages.reminder)}
+          </span>
+        </div>
+        <div>
+          <Button onClick={handleRedirect} />
+        </div>
+      </Background>
+    </div>
   )
 }

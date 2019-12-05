@@ -7,16 +7,43 @@ import messages from './messages'
 export default function({
   children,
   onClick,
-  path = ''
-}: React.PropsWithChildren<{ onClick?: () => void; path?: string }>) {
+  path = '',
+  isOrange = false,
+  isLightGreen = false
+}: React.PropsWithChildren<{
+  onClick?: () => void
+  path?: string
+  isOrange?: boolean
+  isLightGreen?: boolean
+}>) {
   const intl = useIntl()
   return onClick && !path ? (
-    <button onClick={onClick} className={style.button}>
-      {children ? children : intl.formatMessage(messages.next)}
-    </button>
+    <div
+      className={`${style.button_wrap} ${
+        isOrange
+          ? style.orange_button
+          : isLightGreen
+          ? style.light_green_button
+          : ''
+      }`}
+    >
+      <button onClick={onClick} className={style.button}>
+        {children ? children : intl.formatMessage(messages.next)}
+      </button>
+    </div>
   ) : (
-    <Link to={path} className={style.button}>
-      {children ? children : intl.formatMessage(messages.next)}
-    </Link>
+    <div
+      className={`${style.button_wrap} ${
+        isOrange
+          ? style.orange_button
+          : isLightGreen
+          ? style.light_green_button
+          : ''
+      }`}
+    >
+      <Link to={path} className={style.button}>
+        {children ? children : intl.formatMessage(messages.next)}
+      </Link>
+    </div>
   )
 }

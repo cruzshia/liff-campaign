@@ -1,0 +1,35 @@
+@import '../../style/variables.sass'
+
+$bullet-size: .5rem
+$bullet-size-large: 1rem
+
+.list
+  list-style: none
+  margin: 0 .5rem
+  li 
+    margin: .5rem 0
+    line-height: 1rem
+
+.list>li::before
+  content: ''
+  width: $bullet-size
+  height: $bullet-size
+  line-height: $bullet-size
+  background: $dark-green
+  border-radius: 50%
+  display: inline-block
+  margin: 0 .5rem
+
+.no_style>li::before
+  background: transparent
+
+.bold
+  font-weight: 700
+
+.large>li 
+  display: flex
+  align-items: center
+  &::before
+    width: $bullet-size-large
+    height: $bullet-size-large
+    line-height: $bullet-size-large

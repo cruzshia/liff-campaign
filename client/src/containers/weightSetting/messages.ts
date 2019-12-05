@@ -18,8 +18,4 @@ export default defineMessages({
     id: PREFIX + 'reminder',
     defaultMessage: 'some reminder'
   },
-  pageTitle: {
-    id: PREFIX + 'pageTitle',
-    defaultmessage: 'Weight'
-  }
 })

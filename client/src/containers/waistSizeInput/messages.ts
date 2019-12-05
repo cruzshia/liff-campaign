@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl'
 
-const PREFIX = 'manualImput.'
+const PREFIX = 'waistSizeInput.'
 
 export default defineMessages({
   title: {
@@ -10,5 +10,5 @@ export default defineMessages({
   message: {
     id: PREFIX + 'message',
     defaultMessage: 'aaaaaaddddddd'
-  }
+  },
 })
