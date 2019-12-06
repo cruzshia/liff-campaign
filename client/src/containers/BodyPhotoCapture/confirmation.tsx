@@ -1,5 +1,5 @@
 import React from 'react'
-import CameraTitleBanner from '@components/cameraTitleBanner'
+import CameraTitleBanner from '@src/components/cameraTitleBanner'
 import Background from '@components/background'
 import style from './bodyPhotoCapture.module.sass'
 import Button from '@components/button'

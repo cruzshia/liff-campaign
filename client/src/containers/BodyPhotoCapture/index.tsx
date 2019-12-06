@@ -13,10 +13,10 @@ export default function() {
   const [img, setImage] = useState<ImgState>({ front: null, side: null })
   const [isCalculating, setIsCalculating] = useState<boolean>(false)
   const handleProceedCamera = useCallback(
-    img => {
-      setImage({ front: img.front, side: img.side })
+    imgBlob => {
+      setImage({ front: imgBlob.front, side: imgBlob.side })
     },
-    [img]
+    [setImage]
   )
   const requestResult = useCallback(() => {
     //TODO: send api
