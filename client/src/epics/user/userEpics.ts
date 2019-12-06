@@ -40,11 +40,7 @@ const userLineLoginEpic = (action$: ActionsObservable<AnyAction>) =>
           } else {
             const token = window.liff.getAccessToken()
             setToken(isDev ? 'dev_token' : token)
-            return of(
-              setLoginResult(token),
-              getUserProfileAct(),
-              initBodyGramAct()
-            )
+            return of(setLoginResult(token), getUserProfileAct(), initBodyGramAct())
           }
         }),
         catchError(() => of(loginErrorAct()))
@@ -97,16 +93,11 @@ export const updateUserEpic = (action$: ActionsObservable<CreateUserActType>) =>
   action$.pipe(
     ofType(UserActionTypes.UPDATE_USER),
     exhaustMap(actions =>
-      from(UserService.updareUserAjax(actions.data)).pipe(
+      from(UserService.updateUserAjax(actions.data)).pipe(
         map(res => setUserProfileAct(toUserModel(res.data))),
         catchError(err => of(unAthorizedCheck(err, updateUserErrorAct())))
       )
     )
   )
 
-export default [
-  createUserEpic,
-  userLineLoginEpic,
-  userLineLogoutEpic,
-  getUserInfoEpic
-]
+export default [createUserEpic, updateUserEpic, userLineLoginEpic, userLineLogoutEpic, getUserInfoEpic]

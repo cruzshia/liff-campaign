@@ -10,6 +10,7 @@ export interface IncomingUserModelType {
 }
 
 export interface UserModelType {
+  uid: string
   gender: 'male' | 'female'
   birthday: string
   height: number

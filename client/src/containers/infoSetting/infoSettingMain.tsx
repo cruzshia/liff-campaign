@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import Top from './top'
-import Middle from './middle'
+import Top from './components/top'
+import Middle from './components/middle'
 import Background from '@components/background'
 import messages from './messages'
 import { useIntl } from 'react-intl'

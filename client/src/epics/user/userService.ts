@@ -10,7 +10,7 @@ export const createUserAjax = (
 ): Promise<HTTPResponse<IncomingUserModelType>> =>
   ajax.post('/users', toUserPayload(data))
 
-export const updareUserAjax = (
+export const updateUserAjax = (
   data: UserModelType
 ): Promise<HTTPResponse<IncomingUserModelType>> =>
-  ajax.put('/users', toUserPayload(data))
+  ajax.put('/users/me', toUserPayload(data))

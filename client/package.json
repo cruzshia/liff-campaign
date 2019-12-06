@@ -24,9 +24,10 @@
     "typescript": "3.7.2"
   },
   "devDependencies": {
-    "redux-logger": "^3.0.6",
     "@types/redux-logger": "^3.0.7",
-    "extract-react-intl-messages": "^2.3.5"
+    "extract-react-intl-messages": "^2.3.5",
+    "redux-logger": "^3.0.6",
+    "ua-parser-js": "^0.7.20"
   },
   "moduleSearchPaths": [
     "./node_modules"

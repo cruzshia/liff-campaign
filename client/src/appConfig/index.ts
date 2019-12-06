@@ -1,8 +1,7 @@
 export const API_PATH: string = '/api/v1'
 
 const { REACT_APP_LIFF_ID, REACT_APP_AMAZON_S3_API, NODE_ENV } = process.env
-export const PREFIX_PATH_AMAZON_S3 =
-  REACT_APP_AMAZON_S3_API || 'https://s3-ap-northeast-1.amazonaws.com'
+export const PREFIX_PATH_AMAZON_S3 = REACT_APP_AMAZON_S3_API || 'https://s3-ap-northeast-1.amazonaws.com'
 
 export const LIFF_ID = REACT_APP_LIFF_ID || '1653573972-GMOV2QQK'
 
@@ -16,5 +15,16 @@ export const routePath = {
   cameraInput: '/camera',
   infoSummary: '/info_summary',
   userTerms: '/user_terms',
-  cameraTutorial: '/camera_tutorial'
+  cameraTutorial: '/camera_tutorial',
+  myPage: {
+    userInfo: '/profile_user_info',
+    analysisSummary: '/profile_analysis_summary'
+  }
 }
+
+export const acceptPath = (() => {
+  const myPagePath = Object.values(routePath.myPage)
+  return Object.values(routePath)
+    .filter(path => typeof path === 'string')
+    .concat(myPagePath)
+})()

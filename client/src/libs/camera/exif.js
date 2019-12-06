@@ -1,5 +1,6 @@
 import { TYPES, TAGS } from './assets/exif.json'
 
+/* eslint-disable */
 function insertExifRotation(jpeg) {
   const zeroth = {}
 
@@ -41,11 +42,11 @@ function dump(exif_dict_original) {
 
 function insert(exif, jpeg) {
   let b64 = false
-  if (exif.slice(0, 6) !== '\x45\x78\x69\x66\x00\x00') {
+  if (exif.slice(0, 6) != '\x45\x78\x69\x66\x00\x00') {
     throw new Error('Given data is not exif.')
   }
-  if (jpeg.slice(0, 2) === '\xff\xd8') {
-  } else if (jpeg.slice(0, 23) === 'data:image/jpeg;base64,' || jpeg.slice(0, 22) === 'data:image/jpg;base64,') {
+  if (jpeg.slice(0, 2) == '\xff\xd8') {
+  } else if (jpeg.slice(0, 23) == 'data:image/jpeg;base64,' || jpeg.slice(0, 22) == 'data:image/jpg;base64,') {
     jpeg = atob(jpeg.split(',')[1])
     b64 = true
   } else {
@@ -64,7 +65,7 @@ function insert(exif, jpeg) {
 }
 
 function splitIntoSegments(data) {
-  if (data.slice(0, 2) !== '\xff\xd8') {
+  if (data.slice(0, 2) != '\xff\xd8') {
     throw new Error("Given data isn't JPEG.")
   }
 
@@ -72,7 +73,7 @@ function splitIntoSegments(data) {
   const segments = ['\xff\xd8']
 
   while (true) {
-    if (data.slice(head, head + 2) === '\xff\xda') {
+    if (data.slice(head, head + 2) == '\xff\xda') {
       segments.push(data.slice(head))
       break
     } else {
@@ -96,7 +97,7 @@ function mergeSegments(segments, exif) {
 
   segments.forEach(function(segment, i) {
     // Replace first occurence of APP1:Exif segment
-    if (segment.slice(0, 2) === '\xff\xe1' && segment.slice(4, 10) === 'Exif\x00\x00') {
+    if (segment.slice(0, 2) == '\xff\xe1' && segment.slice(4, 10) == 'Exif\x00\x00') {
       if (!hasExifSegment) {
         segments[i] = exif
         hasExifSegment = true
@@ -132,16 +133,17 @@ function _dict_to_bytes(ifd_dict, ifd, ifd_offset) {
 
   let entries = ''
   let values = ''
+  let key
 
   for (let key in ifd_dict) {
-    if (typeof key === 'string') {
+    if (typeof key == 'string') {
       key = parseInt(key)
     }
-    if (ifd === '0th' && [34665, 34853].indexOf(key) > -1) {
+    if (ifd == '0th' && [34665, 34853].indexOf(key) > -1) {
       continue
-    } else if (ifd === 'Exif' && key === 40965) {
+    } else if (ifd == 'Exif' && key == 40965) {
       continue
-    } else if (ifd === '1st' && [513, 514].indexOf(key) > -1) {
+    } else if (ifd == '1st' && [513, 514].indexOf(key) > -1) {
       continue
     }
 
@@ -150,7 +152,7 @@ function _dict_to_bytes(ifd_dict, ifd, ifd_offset) {
     const value_type = TAGS[ifd][key]['type']
     const type_str = pack('>H', [TYPES[value_type]])
 
-    if (typeof raw_value === 'number') {
+    if (typeof raw_value == 'number') {
       raw_value = [raw_value]
     }
     const offset = TIFF_HEADER_LENGTH + entries_length + ifd_offset + values.length
@@ -170,15 +172,15 @@ function pack(mark, array) {
   if (!(array instanceof Array)) {
     throw new Error("'pack' error. Got invalid type argument.")
   }
-  if (mark.length - 1 !== array.length) {
+  if (mark.length - 1 != array.length) {
     throw new Error("'pack' error. " + (mark.length - 1) + ' marks, ' + array.length + ' elements.')
   }
 
   let littleEndian
 
-  if (mark[0] === '<') {
+  if (mark[0] == '<') {
     littleEndian = true
-  } else if (mark[0] === '>') {
+  } else if (mark[0] == '>') {
     littleEndian = false
   } else {
     throw new Error('')
@@ -191,9 +193,9 @@ function pack(mark, array) {
   let valStr = null
 
   while ((c = mark[p])) {
-    if (c.toLowerCase() === 'b') {
+    if (c.toLowerCase() == 'b') {
       val = array[p - 1]
-      if (c === 'b' && val < 0) {
+      if (c == 'b' && val < 0) {
         val += 0x100
       }
       if (val > 0xff || val < 0) {
@@ -201,7 +203,7 @@ function pack(mark, array) {
       } else {
         valStr = String.fromCharCode(val)
       }
-    } else if (c === 'H') {
+    } else if (c == 'H') {
       val = array[p - 1]
       if (val > 0xffff || val < 0) {
         throw new Error("'pack' error.")
@@ -214,9 +216,9 @@ function pack(mark, array) {
             .join('')
         }
       }
-    } else if (c.toLowerCase() === 'l') {
+    } else if (c.toLowerCase() == 'l') {
       val = array[p - 1]
-      if (c === 'l' && val < 0) {
+      if (c == 'l' && val < 0) {
         val += 0x100000000
       }
       if (val > 0xffffffff || val < 0) {
@@ -246,32 +248,32 @@ function pack(mark, array) {
 }
 
 function unpack(mark, str) {
-  if (typeof str !== 'string') {
+  if (typeof str != 'string') {
     throw new Error("'unpack' error. Got invalid type argument.")
   }
 
   let l = 0
 
   for (let markPointer = 1; markPointer < mark.length; markPointer++) {
-    if (mark[markPointer].toLowerCase() === 'b') {
+    if (mark[markPointer].toLowerCase() == 'b') {
       l += 1
-    } else if (mark[markPointer].toLowerCase() === 'h') {
+    } else if (mark[markPointer].toLowerCase() == 'h') {
       l += 2
-    } else if (mark[markPointer].toLowerCase() === 'l') {
+    } else if (mark[markPointer].toLowerCase() == 'l') {
       l += 4
     } else {
       throw new Error("'unpack' error. Got invalid mark.")
     }
   }
 
-  if (l !== str.length) {
+  if (l != str.length) {
     throw new Error("'unpack' error. Mismatch between symbol and string length. " + l + ':' + str.length)
   }
 
   let littleEndian
-  if (mark[0] === '<') {
+  if (mark[0] == '<') {
     littleEndian = true
-  } else if (mark[0] === '>') {
+  } else if (mark[0] == '>') {
     littleEndian = false
   } else {
     throw new Error("'unpack' error.")
@@ -285,14 +287,14 @@ function unpack(mark, str) {
   let sliced = ''
 
   while ((c = mark[p])) {
-    if (c.toLowerCase() === 'b') {
+    if (c.toLowerCase() == 'b') {
       length = 1
       sliced = str.slice(strPointer, strPointer + length)
       val = sliced.charCodeAt(0)
-      if (c === 'b' && val >= 0x80) {
+      if (c == 'b' && val >= 0x80) {
         val -= 0x100
       }
-    } else if (c === 'H') {
+    } else if (c == 'H') {
       length = 2
       sliced = str.slice(strPointer, strPointer + length)
       if (littleEndian) {
@@ -302,7 +304,7 @@ function unpack(mark, str) {
           .join('')
       }
       val = sliced.charCodeAt(0) * 0x100 + sliced.charCodeAt(1)
-    } else if (c.toLowerCase() === 'l') {
+    } else if (c.toLowerCase() == 'l') {
       length = 4
       sliced = str.slice(strPointer, strPointer + length)
       if (littleEndian) {
@@ -316,7 +318,7 @@ function unpack(mark, str) {
         sliced.charCodeAt(1) * 0x10000 +
         sliced.charCodeAt(2) * 0x100 +
         sliced.charCodeAt(3)
-      if (c === 'l' && val >= 0x80000000) {
+      if (c == 'l' && val >= 0x80000000) {
         val -= 0x100000000
       }
     } else {
@@ -356,7 +358,7 @@ function _value_to_bytes(raw_value, value_type, offset) {
   let value_str = ''
   let length, new_value, num, den
 
-  if (value_type === 'Byte') {
+  if (value_type == 'Byte') {
     length = raw_value.length
     if (length <= 4) {
       value_str = _pack_byte(raw_value) + nStr('\x00', 4 - length)
@@ -364,7 +366,7 @@ function _value_to_bytes(raw_value, value_type, offset) {
       value_str = pack('>L', [offset])
       four_bytes_over = _pack_byte(raw_value)
     }
-  } else if (value_type === 'Short') {
+  } else if (value_type == 'Short') {
     length = raw_value.length
     if (length <= 2) {
       value_str = _pack_short(raw_value) + nStr('\x00\x00', 2 - length)
@@ -372,7 +374,7 @@ function _value_to_bytes(raw_value, value_type, offset) {
       value_str = pack('>L', [offset])
       four_bytes_over = _pack_short(raw_value)
     }
-  } else if (value_type === 'Long') {
+  } else if (value_type == 'Long') {
     length = raw_value.length
     if (length <= 1) {
       value_str = _pack_long(raw_value)
@@ -380,7 +382,7 @@ function _value_to_bytes(raw_value, value_type, offset) {
       value_str = pack('>L', [offset])
       four_bytes_over = _pack_long(raw_value)
     }
-  } else if (value_type === 'Ascii') {
+  } else if (value_type == 'Ascii') {
     new_value = raw_value + '\x00'
     length = new_value.length
     if (length > 4) {
@@ -389,8 +391,8 @@ function _value_to_bytes(raw_value, value_type, offset) {
     } else {
       value_str = new_value + nStr('\x00', 4 - length)
     }
-  } else if (value_type === 'Rational') {
-    if (typeof raw_value[0] === 'number') {
+  } else if (value_type == 'Rational') {
+    if (typeof raw_value[0] == 'number') {
       length = 1
       num = raw_value[0]
       den = raw_value[1]
@@ -406,8 +408,8 @@ function _value_to_bytes(raw_value, value_type, offset) {
     }
     value_str = pack('>L', [offset])
     four_bytes_over = new_value
-  } else if (value_type === 'SRational') {
-    if (typeof raw_value[0] === 'number') {
+  } else if (value_type == 'SRational') {
+    if (typeof raw_value[0] == 'number') {
       length = 1
       num = raw_value[0]
       den = raw_value[1]
@@ -423,7 +425,7 @@ function _value_to_bytes(raw_value, value_type, offset) {
     }
     value_str = pack('>L', [offset])
     four_bytes_over = new_value
-  } else if (value_type === 'Undefined') {
+  } else if (value_type == 'Undefined') {
     length = raw_value.length
     if (length > 4) {
       value_str = pack('>L', [offset])

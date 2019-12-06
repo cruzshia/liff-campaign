@@ -1,30 +1,51 @@
-import { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, Redirect } from 'react-router-dom'
 import { loginAct } from '@reducer/user/actions'
 import { StoreState } from '@reducer/index'
-import { routePath } from '@src/appConfig'
+import { acceptPath, routePath } from '@src/appConfig'
+import Spinner from '@components/spinner'
+
+const REDIRECT_KEY = '__h_redirect__'
 
 export default function Login() {
   const dispatch = useDispatch()
-  const location = useLocation()
-  const history = useHistory()
+  const { pathname } = useLocation()
+  const [redirect, setRedirect] = useState<string | undefined>()
+
   const { profile, token, userChecked } = useSelector((state: StoreState) => ({
     token: state.user.token,
     userChecked: state.user.userChecked,
     profile: state.user.profile
   }))
 
+  const setRedirectPath = useCallback(() => {
+    if (acceptPath.indexOf(pathname) !== -1) {
+      localStorage.setItem(REDIRECT_KEY, pathname)
+    } else {
+      localStorage.setItem(REDIRECT_KEY, '/')
+    }
+  }, [pathname])
+
   // first time visit alway trigger login action
   useEffect(() => {
-    !token && dispatch(loginAct())
-  }, [dispatch, token])
+    if (!token) {
+      // set redirect path
+      !localStorage.getItem(REDIRECT_KEY) && setRedirectPath()
+      dispatch(loginAct())
+    }
+  }, [dispatch, token, setRedirectPath])
 
-  // login redirect if in login path
-  const isLoginRedirect = userChecked && token && location.pathname === '/'
+  // not registered account redirecting to info setting page
   useEffect(() => {
-    isLoginRedirect && history.push(profile ? routePath.waistSizeInput : routePath.infoSetting)
-  }, [isLoginRedirect, history, profile])
+    if (userChecked && !profile && pathname !== routePath.infoSetting) {
+      setRedirect(routePath.infoSetting)
+    } else {
+      setRedirect(undefined)
+    }
+  }, [dispatch, userChecked, profile, pathname])
 
-  return null
+  const renderElement = redirect ? <Redirect to={redirect} /> : null
+
+  return !userChecked ? <Spinner /> : renderElement
 }

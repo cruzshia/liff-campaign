@@ -1,7 +1,7 @@
 import React from 'react'
-import style from './infoSetting.module.sass'
+import style from '../infoSetting.module.sass'
 import { useIntl } from 'react-intl'
-import messages from './messages'
+import messages from '../messages'
 
 export default function() {
   const { formatMessage } = useIntl()

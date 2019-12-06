@@ -1,7 +1,7 @@
 import React from 'react'
 import Background from '@components/background'
-import CameraTitleBanner from '@src/components/cameraTitleBanner'
-import style from './bodyPhotoCapture.module.sass'
+import CameraTitleBanner from '@components/cameraTitleBanner'
+import style from '../bodyPhotoCapture.module.sass'
 import Button from '@components/button'
 import { routePath } from '@src/appConfig'
 

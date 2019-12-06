@@ -19,7 +19,8 @@ export default function({ headerH = 0, footerH = 0, completeCbk, errorCbk }: Pro
   useEffect(() => {
     const camera = getCamera({
       completeCbk,
-      errorCbk
+      errorCbk,
+      height: 180
     })
     const intervalID = camera.after_render()
     return clearInterval(intervalID)
@@ -45,8 +46,10 @@ export default function({ headerH = 0, footerH = 0, completeCbk, errorCbk }: Pro
         <div id='v-indicator' className='indicator' />
         <div id='h-indicator' className='indicator' />
         <div id='c-indicator' />
-        {/* <!-- Camera trigger --> */}
+        <div id='selfie-count'></div>
       </div>
+      {/* <!-- Camera trigger --> */}
+      <button id='camera--switch'></button>
       <button id='camera--trigger' className={style.camera_trigger} />
     </>
   )

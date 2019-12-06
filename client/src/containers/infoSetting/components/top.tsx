@@ -2,7 +2,7 @@ import React from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import { useIntl } from 'react-intl'
-import messages from './messages'
+import messages from '../messages'
 import Select from '@components/select'
 
 export default function() {

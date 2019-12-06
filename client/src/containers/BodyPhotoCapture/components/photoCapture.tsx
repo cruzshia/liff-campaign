@@ -1,7 +1,7 @@
 import React from 'react'
 import Camera from '@components/camera'
 import CameraTitleBanner from '@components/cameraTitleBanner'
-import style from './bodyPhotoCapture.module.sass'
+import style from '../bodyPhotoCapture.module.sass'
 import { CameraProp } from '@components/camera'
 
 interface Props {

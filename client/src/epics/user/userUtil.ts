@@ -1,6 +1,7 @@
 import { IncomingUserModelType, UserModelType } from '@reducer/user/userModel'
 
 export const toUserModel = (data: IncomingUserModelType): UserModelType => ({
+  uid: data.uid,
   gender: data.gender,
   birthday: data.birthday,
   height: data.height,

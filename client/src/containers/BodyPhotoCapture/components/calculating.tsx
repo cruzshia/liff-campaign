@@ -1,6 +1,6 @@
 import React from 'react'
 import Background from '@components/background'
-import CameraTitleBanner from '@src/components/cameraTitleBanner'
+import CameraTitleBanner from '@components/cameraTitleBanner'
 
 export default function Calculating() {
   return (

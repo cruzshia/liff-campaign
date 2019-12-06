@@ -4,14 +4,14 @@ import InfoCard from '@components/infoCard'
 import Button from '@components/button'
 import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
-import messages from '../messages'
+import messages from './messages'
 import { useHistory } from 'react-router-dom'
 import Select from '@components/select'
 import PageTitle from '@components/pageTitle'
 import GoToLine from '@src/components/goToLine'
 
 export default function() {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl()
   const history = useHistory()
   const handleRedirect = useCallback(() => history.push(routePath.measurement), [history])
   return (

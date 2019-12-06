@@ -1,7 +1,6 @@
 import React from 'react'
-import WeightSettingMain from './components/weightSettingMain'
+import WeightSettingMain from './weightSettingMain'
 
 export default function() {
-
   return <WeightSettingMain />
 }

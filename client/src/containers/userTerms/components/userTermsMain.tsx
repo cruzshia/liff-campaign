@@ -10,7 +10,7 @@ import { routePath } from '@src/appConfig'
 import CameraTitleBanner from '@src/components/cameraTitleBanner'
 
 export default function UserTermsMain() {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl()
   return (
     <div className='h-100vh d-flex flex-column'>
       <Background isGreen={true}>
