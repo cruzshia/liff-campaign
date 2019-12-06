@@ -8,42 +8,20 @@ export default function({
   children,
   onClick,
   path = '',
-  isOrange = false,
-  isLightGreen = false
+  color = 'green'
 }: React.PropsWithChildren<{
   onClick?: () => void
   path?: string
-  isOrange?: boolean
-  isLightGreen?: boolean
+  color?: 'green' | 'light_green' | 'orange'
 }>) {
-  const intl = useIntl()
+  const { formatMessage } = useIntl()
   return onClick && !path ? (
-    <div
-      className={`${style.button_wrap} ${
-        isOrange
-          ? style.orange_button
-          : isLightGreen
-          ? style.light_green_button
-          : ''
-      }`}
-    >
-      <button onClick={onClick} className={style.button}>
-        {children ? children : intl.formatMessage(messages.next)}
-      </button>
-    </div>
+    <button onClick={onClick} className={style[color]}>
+      {children ? children : formatMessage(messages.next)}
+    </button>
   ) : (
-    <div
-      className={`${style.button_wrap} ${
-        isOrange
-          ? style.orange_button
-          : isLightGreen
-          ? style.light_green_button
-          : ''
-      }`}
-    >
-      <Link to={path} className={style.button}>
-        {children ? children : intl.formatMessage(messages.next)}
-      </Link>
-    </div>
+    <Link to={path} className={style[color]}>
+      {children ? children : formatMessage(messages.next)}
+    </Link>
   )
 }

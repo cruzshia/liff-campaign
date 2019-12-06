@@ -58,5 +58,13 @@ export default defineMessages({
   noInput: {
     id: PREFIX + 'noInput',
     defaultMessage: 'Cancel'
+  },
+  attend: {
+    id: PREFIX + 'attend',
+    defaultMessage: 'Attend'
+  },
+  dontAttend: {
+    id: PREFIX + 'dontAttend',
+    defaultMessage: "Don't Attend"
   }
 })

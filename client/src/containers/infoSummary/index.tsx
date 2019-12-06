@@ -1,5 +1,5 @@
 import React from 'react'
-import InfoSummaryMain from './components/infoSummaryMain'
+import InfoSummaryMain from './infoSummaryMain'
 
 export default function (){
 

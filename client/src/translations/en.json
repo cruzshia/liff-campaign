@@ -1,4 +1,5 @@
 {
+  "cameraTutorial.title": "How to take photo",
   "infoSetting.birthdayMessage": "Please input your birthday",
   "infoSetting.birthdayTitle": "Birthday",
   "infoSetting.day": "Day",
@@ -27,6 +28,9 @@
   "measurement.useCamera": "Check using camera",
   "measurement.useInput": "Check manually",
   "next": "Next",
+  "userTerms.agree": "Agree",
+  "userTerms.disagree": "Disagree",
+  "userTerms.title": "Waist Size Check",
   "waistSizeInput.message": "aaaaaaddddddd",
   "waistSizeInput.title": "Waist Size",
   "weightSetting.hint": "Please choose the closest number",

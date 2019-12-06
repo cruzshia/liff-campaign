@@ -2,7 +2,7 @@ import React from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import { useIntl } from 'react-intl'
-import messages from '../messages'
+import messages from './messages'
 import Select from '@components/select'
 
 export default function() {
@@ -12,6 +12,7 @@ export default function() {
       <InfoCard
         title={intl.formatMessage(messages.genderTitle)}
         message={intl.formatMessage(messages.genderMessage)}
+        titleImg='assets/gender.svg'
       >
         <div className='d-flex justify-center'>
           <label>
@@ -27,6 +28,7 @@ export default function() {
       <InfoCard
         title={intl.formatMessage(messages.birthdayTitle)}
         message={intl.formatMessage(messages.birthdayMessage)}
+        titleImg='assets/birthday.svg'
       >
         <div className='d-flex justify-between w-100'>
           <div>
@@ -52,6 +54,7 @@ export default function() {
       <InfoCard
         title={intl.formatMessage(messages.heightTitle)}
         message={intl.formatMessage(messages.heightMessage)}
+        titleImg='assets/height.svg'
       >
         <Select unit='cm' name='height'>
           <option>168cm</option>

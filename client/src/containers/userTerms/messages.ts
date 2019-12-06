@@ -1,10 +1,10 @@
 import { defineMessages } from 'react-intl'
 
-const PREFIX = 'userTerms.'
+const PREFIX = 'bodygram.'
 
 export default defineMessages({
-  title: {
-    id: PREFIX + 'title',
+  useTermsTitle: {
+    id: PREFIX + 'useTermsTitle',
     defaultMessage: 'Waist Size Check'
   },
   agree: {
@@ -14,5 +14,13 @@ export default defineMessages({
   disagree: {
     id: PREFIX + 'disagree',
     defaultMessage: 'Disagree'
+  },
+  description: {
+    id: PREFIX + 'useTermsDescription',
+    defaultMessage: ''
+  },
+  title: {
+    id: PREFIX + 'title',
+    defineMessages: 'Waist Size Check'
   }
 })

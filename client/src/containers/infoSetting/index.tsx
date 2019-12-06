@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import { routePath } from '@src/appConfig'
-import InfoSettingMain from './components/infoSettingMain'
+import InfoSettingMain from './infoSettingMain'
 
 export const InfoSettingContext = React.createContext({ handleProceed: () => {} })
 

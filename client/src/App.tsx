@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <IntlProvider locale='ja' messages={ja}>
           <Router>
-            <Login />
+            {/* <Login /> */}
             <Switch>
               <Route exact path='/camera' component={BodyPhotoCapture} />
               <Route exact path={routePath.infoSetting} component={InfoSetting} />
@@ -34,7 +34,11 @@ const App: React.FC = () => {
               <Route exact path={routePath.waistSizeInput} component={WaistSizeInput} />
               <Route exact path={routePath.infoSummary} component={InfoSummary} />
               <Route exact path={routePath.userTerms} component={UserTerms} />
-              <Route exact path={routePath.cameraTutorial} component={CameraTutorial} />
+              <Route
+                exact
+                path={routePath.cameraTutorial}
+                component={CameraTutorial}
+              />
               <Route exact path={routePath.root} component={Home} />
             </Switch>
           </Router>
