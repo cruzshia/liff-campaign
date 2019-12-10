@@ -1,6 +1,9 @@
 import { APIGatewayEvent } from 'aws-lambda'
+import crypto from 'crypto'
 
 import { get, lineToken } from '../lib/http'
+
+const shasum = crypto.createHash('sha1');
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -34,5 +37,5 @@ export const authorize = async (event: APIGatewayEvent) => {
   } catch(e) {
     console.error(e)
   }
-  return userId
+  return userId ? shasum.update(userId).digest('hex') : undefined
 }
