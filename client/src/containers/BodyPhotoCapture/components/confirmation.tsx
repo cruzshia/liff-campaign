@@ -1,5 +1,5 @@
 import React from 'react'
-import CameraTitleBanner from '@components/cameraTitleBanner'
+import CameraHeader from '@components/CameraHeader'
 import Background from '@components/background'
 import style from '../bodyPhotoCapture.module.sass'
 import Button from '@components/button'
@@ -15,7 +15,7 @@ export default function Confirmation({
 }) {
   return (
     <>
-      <CameraTitleBanner />
+      <CameraHeader />
       <Background>
         <div className='flex-center-center flex-column'>
           <img alt='' src='assets/confirmationFront.svg' className={`${style.title} mt-1rem mb-1rem`} />

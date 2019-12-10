@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../infoSetting.module.sass'
+import style from '../register.module.sass'
 import { useIntl } from 'react-intl'
 import messages from '../messages'
 

@@ -1,7 +1,7 @@
 import React, { useEffect, CSSProperties } from 'react'
-import getCamera from '@src/libs/camera'
-import frontGuideImage from '@src/libs/camera/assets/front.png'
-import sideGuideImage from '@src/libs/camera/assets/side.png'
+import getCamera from '@src/utils/camera'
+import frontGuideImage from '@src/utils/camera/assets/front.png'
+import sideGuideImage from '@src/utils/camera/assets/side.png'
 import style from './camera.module.sass'
 
 export interface CameraProp {

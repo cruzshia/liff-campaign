@@ -8,10 +8,10 @@ import DashBorder from '@components/dashBorder'
 import Button from '@components/button'
 import List from '@components/list'
 import style from './infoSummary.module.sass'
-import GoToLine from '@src/components/goToLine'
+import LineButton from '@src/components/LineButton'
 
 export default function InfoSummary() {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl()
   return (
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.title)}</PageTitle>
@@ -39,7 +39,7 @@ export default function InfoSummary() {
         </InfoCard>
         <p>aaaaaaaaaaaa</p>
         <Button color='orange'></Button>
-        <GoToLine />
+        <LineButton />
       </Background>
     </div>
   )

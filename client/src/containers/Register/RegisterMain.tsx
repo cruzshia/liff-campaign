@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl'
 import Button from '@components/button'
 import { InfoSettingContext } from './index'
 import PageTitle from '@components/pageTitle'
-import GoToLine from '@src/components/goToLine'
+import LineButton from '@src/components/LineButton'
 
 export default function InfoSetting() {
   const { formatMessage } = useIntl()
@@ -20,7 +20,7 @@ export default function InfoSetting() {
       <Background>
         <Button onClick={handleProceed}>{formatMessage(messages.input)}</Button>
         <Button>{formatMessage(messages.noInput)}</Button>
-        <GoToLine />
+        <LineButton />
       </Background>
     </>
   )

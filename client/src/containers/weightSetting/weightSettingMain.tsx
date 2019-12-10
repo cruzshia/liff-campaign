@@ -6,9 +6,9 @@ import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
 import messages from './messages'
 import { useHistory } from 'react-router-dom'
-import Select from '@components/select'
+import Select from '@src/components/SelectMenu'
 import PageTitle from '@components/pageTitle'
-import GoToLine from '@src/components/goToLine'
+import LineButton from '@src/components/LineButton'
 
 export default function() {
   const { formatMessage } = useIntl()
@@ -34,7 +34,7 @@ export default function() {
           <span className='pre-wrap'>{formatMessage(messages.reminder)}</span>
         </div>
         <Button onClick={handleRedirect} />
-        <GoToLine />
+        <LineButton />
       </Background>
     </div>
   )

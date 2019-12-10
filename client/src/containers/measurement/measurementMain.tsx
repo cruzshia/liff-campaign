@@ -7,10 +7,10 @@ import messages from './messages'
 import PageTitle from '@components/pageTitle'
 import DashBorder from '@src/components/dashBorder'
 import { routePath } from '@src/appConfig'
-import GoToLine from '@src/components/goToLine'
+import LineButton from '@src/components/LineButton'
 
 export default function MeasurementMain() {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl()
   return (
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.title)}</PageTitle>
@@ -30,9 +30,9 @@ export default function MeasurementMain() {
           <img src='/' alt='' />
         </div>
 
-        <Button path={routePath.userTerms}>{formatMessage(messages.useCamera)}</Button>
+        <Button path={routePath.termOfUse}>{formatMessage(messages.useCamera)}</Button>
         <Button path={routePath.waistSizeInput}>{formatMessage(messages.useInput)}</Button>
-        <GoToLine />
+        <LineButton />
       </Background>
     </div>
   )

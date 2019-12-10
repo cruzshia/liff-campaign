@@ -1,10 +1,10 @@
 import { ActionsObservable, ofType } from 'redux-observable'
 import { AnyAction } from 'redux'
-import { catchError, map, mergeMap, exhaustMap } from 'rxjs/operators'
+import { of, from } from 'rxjs'
+import { catchError, map, tap, mergeMap, exhaustMap } from 'rxjs/operators'
 import {
   UserActionTypes,
   setLoginResult,
-  loginErrorAct,
   getUserProfileAct,
   CreateUserActType,
   setUserProfileAct,
@@ -22,7 +22,7 @@ import { setToken } from '@src/utils/ajax'
 import * as UserService from './userService'
 import { isDev } from '@src/appConfig'
 import { unAthorizedCheck } from '../errorUtils'
-import { of, from } from 'rxjs'
+import ajaxSubject from '@src/utils/ajaxSubject'
 
 const userLineLoginEpic = (action$: ActionsObservable<AnyAction>) =>
   action$.pipe(
@@ -43,7 +43,7 @@ const userLineLoginEpic = (action$: ActionsObservable<AnyAction>) =>
             return of(setLoginResult(token), getUserProfileAct(), initBodyGramAct())
           }
         }),
-        catchError(() => of(loginErrorAct()))
+        catchError(() => tap(error => ajaxSubject.error(UserActionTypes.LOGIN_ERROR, error)))
       )
     )
   )

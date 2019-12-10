@@ -1,27 +1,19 @@
 import React, { useCallback } from 'react'
-import { useSelector } from 'react-redux'
-import { useHistory, Redirect } from 'react-router-dom'
-import { StoreState } from '@reducer/index'
+import { useHistory } from 'react-router-dom'
 import { routePath } from '@src/appConfig'
-import InfoSettingMain from './infoSettingMain'
+import RegisterMain from './RegisterMain'
 
 export const InfoSettingContext = React.createContext({ handleProceed: () => {} })
 
 export default function InfoSetting() {
   const history = useHistory()
-  const { profile, userChecked } = useSelector((state: StoreState) => ({
-    userChecked: state.user.userChecked,
-    profile: state.user.profile
-  }))
   const handleProceed = useCallback(() => {
     history.push(routePath.weightSetting)
   }, [history])
 
-  return userChecked && profile ? (
-    <Redirect to={routePath.weightSetting} />
-  ) : (
+  return (
     <InfoSettingContext.Provider value={{ handleProceed: handleProceed }}>
-      <InfoSettingMain />
+      <RegisterMain />
     </InfoSettingContext.Provider>
   )
 }

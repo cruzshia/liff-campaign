@@ -2,14 +2,14 @@ import React from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import Button from '@components/button'
-import Select from '@components/select'
+import Select from '@src/components/SelectMenu'
 import messages from './messages'
 import { useIntl } from 'react-intl'
 import PageTitle from '@components/pageTitle'
-import GoToLine from '@src/components/goToLine'
+import LineButton from '@src/components/LineButton'
 
 export default function({ handleProceed }: { handleProceed: () => void }) {
-  const {formatMessage} = useIntl()
+  const { formatMessage } = useIntl()
   return (
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.title)}</PageTitle>
@@ -29,7 +29,7 @@ export default function({ handleProceed }: { handleProceed: () => void }) {
           <p>aaaaaaaaa</p>
         </InfoCard>
         <Button onClick={handleProceed} />
-        <GoToLine />
+        <LineButton />
       </Background>
     </div>
   )

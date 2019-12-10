@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useIntl } from 'react-intl'
 import messages from './messages'
 
-export default function({
+export default function Button({
   children,
   onClick,
   path = '',

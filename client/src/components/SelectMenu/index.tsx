@@ -1,11 +1,16 @@
 import React from 'react'
-import style from './select.module.sass'
+import style from './selectMenu.module.sass'
 
-export default function({
-  children,
-  unit,
-  name
-}: React.PropsWithChildren<{ unit: string; name: string }>) {
+export interface OptionType {
+  title: string
+  value: any
+}
+interface Props {
+  unit: string
+  name: string
+}
+
+export default function SelectMenu({ children, unit, name }: React.PropsWithChildren<Props>) {
   return (
     <label className='flex-center-center' htmlFor={name}>
       <div className='d-flex x-pr'>

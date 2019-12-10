@@ -1,7 +1,7 @@
 import React from 'react'
-import style from './goToLine.module.sass'
+import style from './lineButton.module.sass'
 
-export default function GoToLine() {
+export default function LineButton() {
   return (
     <a href='line://' className={style.goToLineWrap}>
       <img src='assets/goToLine.svg' alt='Go to Line' className={style.goToLine} />

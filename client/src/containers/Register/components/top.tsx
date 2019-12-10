@@ -3,7 +3,7 @@ import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import { useIntl } from 'react-intl'
 import messages from '../messages'
-import Select from '@components/select'
+import SelectMenu from '@src/components/SelectMenu'
 
 export default function() {
   const intl = useIntl()
@@ -33,21 +33,21 @@ export default function() {
         <div className='d-flex justify-between w-100'>
           <div>
             {intl.formatMessage(messages.year)}
-            <Select name='year' unit=''>
+            <SelectMenu name='year' unit=''>
               <option>168cm </option>
-            </Select>
+            </SelectMenu>
           </div>
           <div>
             {intl.formatMessage(messages.month)}
-            <Select name='month' unit=''>
+            <SelectMenu name='month' unit=''>
               <option>168cm </option>
-            </Select>
+            </SelectMenu>
           </div>
           <div>
             {intl.formatMessage(messages.day)}
-            <Select name='day' unit=''>
+            <SelectMenu name='day' unit=''>
               <option>168cm </option>
-            </Select>
+            </SelectMenu>
           </div>
         </div>
       </InfoCard>
@@ -56,9 +56,9 @@ export default function() {
         message={intl.formatMessage(messages.heightMessage)}
         titleImg='assets/height.svg'
       >
-        <Select unit='cm' name='height'>
+        <SelectMenu unit='cm' name='height'>
           <option>168cm</option>
-        </Select>
+        </SelectMenu>
       </InfoCard>
     </Background>
   )

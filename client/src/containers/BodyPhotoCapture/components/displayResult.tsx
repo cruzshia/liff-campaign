@@ -1,6 +1,6 @@
 import React from 'react'
 import Background from '@components/background'
-import CameraTitleBanner from '@components/cameraTitleBanner'
+import CameraHeader from '@components/CameraHeader'
 import style from '../bodyPhotoCapture.module.sass'
 import Button from '@components/button'
 import { routePath } from '@src/appConfig'
@@ -8,7 +8,7 @@ import { routePath } from '@src/appConfig'
 export default function Calculating({ result }: { result: number }) {
   return (
     <div className='h-100vh d-flex flex-column'>
-      <CameraTitleBanner />
+      <CameraHeader />
       <Background>
         <div className='flex-center-center flex-column x-pr mb-1rem'>
           <img src='/assets/displayResult.svg' alt='' className='image mt-1rem' />

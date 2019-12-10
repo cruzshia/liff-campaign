@@ -1,22 +1,22 @@
 import React from 'react'
-import Background from '@src/components/background'
-import messages from '../messages'
+import Background from '@components/background'
+import messages from './messages'
 import { useIntl } from 'react-intl'
 import InfoCard from '@components/infoCard'
 import DashBorder from '@components/dashBorder'
-import style from '../userTerms.module.sass'
+import style from './termOfUse.module.sass'
 import Button from '@components/button'
 import { routePath } from '@src/appConfig'
-import CameraTitleBanner from '@src/components/cameraTitleBanner'
+import CameraHeader from '@components/CameraHeader'
 
 export default function UserTermsMain() {
   const { formatMessage } = useIntl()
   return (
     <div className='h-100vh d-flex flex-column'>
-      <Background isGreen={true}>
+      <Background backgroundColor='darkGreen'>
         <p className={style.font_white}>{formatMessage(messages.title)}</p>
         <div className={style.user_term_title}>
-          <CameraTitleBanner />
+          <CameraHeader />
         </div>
         <InfoCard hasCircle={false} scroll={true}>
           <p>{formatMessage(messages.useTermsTitle)}</p>

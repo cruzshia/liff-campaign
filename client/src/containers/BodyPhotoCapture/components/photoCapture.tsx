@@ -1,6 +1,6 @@
 import React from 'react'
 import Camera from '@components/camera'
-import CameraTitleBanner from '@components/cameraTitleBanner'
+import CameraHeader from '@components/CameraHeader'
 import style from '../bodyPhotoCapture.module.sass'
 import { CameraProp } from '@components/camera'
 
@@ -11,7 +11,7 @@ interface Props {
 export default function({ handleProceed }: Props) {
   return (
     <>
-      <CameraTitleBanner />
+      <CameraHeader />
       <Camera completeCbk={handleProceed} errorCbk={error => console.log(error)} headerH={50} footerH={70} />
       <div className={style.camera_control}></div>
     </>

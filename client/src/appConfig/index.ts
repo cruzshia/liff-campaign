@@ -7,14 +7,13 @@ export const LIFF_ID = REACT_APP_LIFF_ID || '1653573972-GMOV2QQK'
 
 export const isDev = NODE_ENV !== 'production'
 export const routePath = {
-  root: '/',
-  infoSetting: '/info_setting',
+  register: '/register',
   weightSetting: '/weight_setting',
   measurement: '/measurement',
   waistSizeInput: '/waist_size_input',
   cameraInput: '/camera',
   infoSummary: '/info_summary',
-  userTerms: '/user_terms',
+  termOfUse: '/term_of_use',
   cameraTutorial: '/camera_tutorial',
   myPage: {
     userInfo: '/profile_user_info',
