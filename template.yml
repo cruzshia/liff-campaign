@@ -108,6 +108,29 @@ Resources:
           Properties:
             Path: /api/v1/estimaton_logs
             Method: GET
+  getLinePoints:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs10.x
+      CodeUri: ./built/getLinePoints
+      MemorySize: 128
+      Timeout: 100
+      Description: Retrieve own line points.
+      Environment:
+        Variables:
+          DB_HOST: !Ref DB_HOST
+          DB_PORT: 3306
+          DB_USER: !Ref DB_USER
+          DB_PASSWORD: !Ref DB_PASSWORD
+          DB_NAME: !Ref DB_NAME
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /api/v1/line_points
+            Method: GET
+
   usersCreate:
     Type: AWS::Serverless::Function
     Properties:
