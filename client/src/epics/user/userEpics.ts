@@ -82,8 +82,11 @@ export const createUserEpic = (action$: ActionsObservable<CreateUserActType>) =>
   action$.pipe(
     ofType(UserActionTypes.CREATE_USER),
     exhaustMap(actions =>
-      from(UserService.createUserAjax(actions.data)).pipe(
-        map(res => setUserProfileAct(toUserModel(res.data))),
+      from(
+        UserService.createUserAjax(actions.data)
+      ).pipe(
+        map(res => 
+          setUserProfileAct(toUserModel(res.data))),
         catchError(err => of(unAthorizedCheck(err, createUserErrorAct())))
       )
     )
@@ -95,6 +98,9 @@ export const updateUserEpic = (action$: ActionsObservable<CreateUserActType>) =>
     exhaustMap(actions =>
       from(UserService.updateUserAjax(actions.data)).pipe(
         map(res => setUserProfileAct(toUserModel(res.data))),
+        tap(() => {
+          ajaxSubject.success(UserActionTypes.UPDATE_USER_SUCCESS)
+        }),
         catchError(err => of(unAthorizedCheck(err, updateUserErrorAct())))
       )
     )

@@ -9,17 +9,16 @@ export default function() {
     <div className={`flex-center-center flex-column mt-1rem mb-1rem ${style.image_padding}`}>
       <img src='/assets/activityIntro.svg' alt='' className='w-100 image' />
       <div className='mt-1rem'>
-        <label>
-          <input type='radio'></input>
+        <label htmlFor='attend'>
+          <input type='radio' name='isEntryContest' value='true' id='attend'></input>
           {formatMessage(messages.attend)}
         </label>
-
-        <label>
-          <input type='radio'></input>
+        <label htmlFor='dontAttend'>
+          <input type='radio' name='isEntryContest' value='false' defaultChecked id='dontAttend'></input>
           {formatMessage(messages.dontAttend)}
         </label>
       </div>
-      <p className={`mt-1rem ${style.font_orange}`}>aaaaaaaaaaaaaaaaaaaaa</p>
+      <p className={`mt-1rem pre-wrap ${style.font_orange}`}>{formatMessage(messages.reminder)}</p>
     </div>
   )
 }

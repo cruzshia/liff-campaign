@@ -8,15 +8,17 @@ export default function Button({
   children,
   onClick,
   path = '',
-  color = 'green'
+  color = 'green',
+  submit
 }: React.PropsWithChildren<{
   onClick?: () => void
   path?: string
   color?: 'green' | 'light_green' | 'orange'
+  submit?: boolean
 }>) {
   const { formatMessage } = useIntl()
-  return onClick && !path ? (
-    <button onClick={onClick} className={style[color]}>
+  return (onClick && !path) || submit ? (
+    <button onClick={onClick} className={style[color]} type={submit ? 'submit' : 'button'}>
       {children ? children : formatMessage(messages.next)}
     </button>
   ) : (

@@ -66,5 +66,9 @@ export default defineMessages({
   dontAttend: {
     id: PREFIX + 'dontAttend',
     defaultMessage: "Don't Attend"
+  },
+  reminder: {
+    id: PREFIX + 'reminder',
+    defaultMessage: 'reminder'
   }
 })

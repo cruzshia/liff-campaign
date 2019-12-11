@@ -15,13 +15,15 @@ export default function InfoSetting() {
   return (
     <>
       <PageTitle>{formatMessage(messages.pageTitle)}</PageTitle>
-      <Top />
-      <Middle />
-      <Background>
-        <Button onClick={handleProceed}>{formatMessage(messages.input)}</Button>
-        <Button>{formatMessage(messages.noInput)}</Button>
-        <LineButton />
-      </Background>
+      <form onSubmit={handleProceed}>
+        <Top />
+        <Middle />
+        <Background>
+          <Button submit={true}>{formatMessage(messages.input)}</Button>
+          <Button>{formatMessage(messages.noInput)}</Button>
+          <LineButton />
+        </Background>
+      </form>
     </>
   )
 }

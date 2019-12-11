@@ -24,7 +24,7 @@ export default function() {
     setImage({ front: null, side: null })
   }, [setImage, setIsCalculating])
   //TODO: bind reducer to get result
-  const result = 111
+  const result = null
   return result ? (
     <DisplayResult result={result} />
   ) : isCalculating ? (

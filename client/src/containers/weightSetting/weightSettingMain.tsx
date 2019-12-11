@@ -1,19 +1,29 @@
-import React, { useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import Button from '@components/button'
-import { routePath } from '@src/appConfig'
 import { useIntl } from 'react-intl'
 import messages from './messages'
-import { useHistory } from 'react-router-dom'
 import Select from '@src/components/SelectMenu'
 import PageTitle from '@components/pageTitle'
 import LineButton from '@src/components/LineButton'
 
-export default function() {
+const MIN_WEIGHT = 30
+
+export default function({ handleProceed }: { handleProceed: (weight: number) => void }) {
   const { formatMessage } = useIntl()
-  const history = useHistory()
-  const handleRedirect = useCallback(() => history.push(routePath.measurement), [history])
+  const [weight, setWeight] = useState(MIN_WEIGHT)
+  const handleOnChange = useCallback(
+    (ev: React.FormEvent<HTMLSelectElement>) => {
+      setWeight(Number(ev.currentTarget.value))
+    },
+    [setWeight]
+  )
+
+  const handleClick = useCallback(() => {
+    handleProceed(weight)
+  }, [weight, handleProceed])
+
   return (
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.weightTitle)}</PageTitle>
@@ -23,17 +33,11 @@ export default function() {
           message={formatMessage(messages.weightMessage)}
           titleImg='/assets/weight.svg'
         >
-          <Select unit='kg' name='weight'>
-            <option>50</option>
-          </Select>
-
-          <p>{formatMessage(messages.weightHint)}</p>
+          <Select unit='kg' name='weight' onChange={handleOnChange} min={MIN_WEIGHT} max={200} />
+          <p className='fs-8'>{formatMessage(messages.weightHint)}</p>
         </InfoCard>
-        <div>
-          <img src='/' alt='' />
-          <span className='pre-wrap'>{formatMessage(messages.reminder)}</span>
-        </div>
-        <Button onClick={handleRedirect} />
+        <img className='image' src='/assets/weightReminder.svg' alt=''></img>
+        <Button onClick={handleClick} />
         <LineButton />
       </Background>
     </div>

@@ -35,5 +35,13 @@ export default defineMessages({
   buttonText: {
     id: PREFIX + 'buttonText',
     defaultMessage: 'Check Visceral Fat'
-  }
+  },
+  reminder:{
+    id: PREFIX + 'reminder',
+    defaultMessage: 'reminder'
+  },
+  reminder2:{
+    id: PREFIX + 'reminder2',
+    defaultMessage: 'reminder2'
+  },
 })

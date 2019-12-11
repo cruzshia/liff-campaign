@@ -16,11 +16,11 @@ export default function() {
       >
         <div className='d-flex justify-center'>
           <label>
-            <input type='radio' />
+            <input type='radio' name='gender' value='male' />
             {intl.formatMessage(messages.male)}
           </label>
           <label>
-            <input type='radio' />
+            <input type='radio' name='gender' value='female' defaultChecked />
             {intl.formatMessage(messages.female)}
           </label>
         </div>
@@ -33,21 +33,15 @@ export default function() {
         <div className='d-flex justify-between w-100'>
           <div>
             {intl.formatMessage(messages.year)}
-            <SelectMenu name='year' unit=''>
-              <option>168cm </option>
-            </SelectMenu>
+            <SelectMenu name='year' unit='' min={1970} max={new Date().getFullYear()} />
           </div>
           <div>
             {intl.formatMessage(messages.month)}
-            <SelectMenu name='month' unit=''>
-              <option>168cm </option>
-            </SelectMenu>
+            <SelectMenu name='month' unit='' min={1} max={12} padTo={2} />
           </div>
           <div>
             {intl.formatMessage(messages.day)}
-            <SelectMenu name='day' unit=''>
-              <option>168cm </option>
-            </SelectMenu>
+            <SelectMenu name='day' unit='' min={1} max={31} padTo={2} />
           </div>
         </div>
       </InfoCard>
@@ -56,9 +50,7 @@ export default function() {
         message={intl.formatMessage(messages.heightMessage)}
         titleImg='assets/height.svg'
       >
-        <SelectMenu unit='cm' name='height'>
-          <option>168cm</option>
-        </SelectMenu>
+        <SelectMenu unit='cm' name='height' min={100} max={200}/>
       </InfoCard>
     </Background>
   )

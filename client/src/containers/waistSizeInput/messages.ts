@@ -9,6 +9,10 @@ export default defineMessages({
   },
   message: {
     id: PREFIX + 'message',
-    defaultMessage: 'aaaaaaddddddd'
+    defaultMessage: ''
   },
+  hint: {
+    id: PREFIX + 'hint',
+    defaultMessage: ''
+  }
 })
