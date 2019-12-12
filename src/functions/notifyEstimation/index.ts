@@ -2,6 +2,7 @@ import { APIGatewayEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from '
 
 import db from '../../db/models'
 import { OK, BadRequest } from '../../lib/response'
+import { getOffalFat } from '../../lib/offalFat'
 import { convertResponse } from '../../model/estimation_log'
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
@@ -19,8 +20,10 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     const rid = body.request.id
     const uid = body.request.user_id
     const status = body.request.status
-    const waist_circumference = body.request.waist_circumference
-    const offal_fat = null
+    const waist_circumference = body.request.waist_circumference || null
+
+    const user = await db.users.findByPk(uid)
+    const offal_fat = (user && waist_circumference) ? getOffalFat(user, waist_circumference) : null
 
     const log = await db.estimationLogs.findByPk(rid)
     const userLogs = await db.estimationLogs.findAll({
@@ -29,18 +32,19 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     })
     const lastLog = userLogs[userLogs.length - 1]
 
-    // TODO: Implement offal_fat logic.
-    // TODO: Implement offal_fat diff.
     // TODO: Implement datetime check.
     if (log) {
       await db.estimationLogs.update({
         status,
         waist_circumference,
-        wc_diff: lastLog && lastLog.waist_circumference ? waist_circumference - lastLog.waist_circumference : null,
+        offal_fat,
+        wc_diff: waist_circumference && lastLog && lastLog.waist_circumference ? waist_circumference - lastLog.waist_circumference : null,
+        of_diff: offal_fat && lastLog && lastLog.offal_fat ? offal_fat - lastLog.offal_fat : null,
       },
       {
         where: { rid },
       })
+      await db.users.update({ waist_circumference, offal_fat }, { where: { uid }})
       const updatedLog = await db.estimationLogs.findByPk(rid)
       response = updatedLog ? OK(convertResponse(updatedLog)) : BadRequest('')
     } else {
@@ -49,11 +53,12 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
         rid,
         status,
         waist_circumference: waist_circumference || null,
-        offal_fat: offal_fat,
-        wc_diff: lastLog && lastLog.waist_circumference ? waist_circumference - lastLog.waist_circumference : null,
+        offal_fat,
+        wc_diff: waist_circumference && lastLog && lastLog.waist_circumference ? waist_circumference - lastLog.waist_circumference : null,
         of_diff: offal_fat && lastLog && lastLog.offal_fat ? offal_fat - lastLog.offal_fat : null,
         week: userLogs.length + 1,
       })
+      await db.users.update({ waist_circumference, offal_fat }, { where: { uid }})
       response = OK(convertResponse(createdLog))
     }
   } catch (e) {
