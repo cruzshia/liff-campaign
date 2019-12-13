@@ -35,11 +35,11 @@ export default {
     return subscription
   },
   success: (type: string, data?: any) => {
-    Logger.log('%cAjax subject %cSUCCESS: ', 'font-weight:bold;', 'color: green', { type, data })
+    Logger.info({ type, data })
     ajaxSubject.next({ type, data })
   },
   error: (type: string, data?: any) => {
-    Logger.log('%cAjax subject %cERROR: ', 'font-weight:bold;', 'color: red', {
+    Logger.error({
       type,
       data
     })

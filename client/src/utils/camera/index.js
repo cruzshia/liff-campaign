@@ -345,9 +345,11 @@ const getCamera = ({ height, completeCbk, errorCbk }) => {
         if (Camera.data.isCapturingFront) {
           Camera.data.frontGuide.style.display = 'block'
           Camera.data.sideGuide.style.display = 'none'
+          Camera.data.cameraSwitch.style.display = 'block'
         } else {
           Camera.data.frontGuide.style.display = 'none'
           Camera.data.sideGuide.style.display = 'block'
+          Camera.data.cameraSwitch.style.display = 'none'
         }
       }
     }

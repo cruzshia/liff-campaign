@@ -1,0 +1,35 @@
+@import '../../../style/variables.sass' 
+  
+.profile-ctr
+  img
+    max-width: 100%
+  .title-img
+    margin: -30px 0 15px
+  .doll-img
+    max-width: 70px
+    position: absolute
+    right: 0
+    bottom: -20px
+  .desc
+    margin: 30px 0 10px
+    text-align: left
+    width: 100%
+
+  .info-row
+    margin-bottom: 10px
+    &.last
+      margin: 10px 0 15px
+    .label
+      width: 105px
+      &::before
+        content: ''
+        display: inline-block
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        background-color: $dark-green
+        margin-right: 5px
+    .info-val
+      font-weight: bold
+      font-size: 18px
+      flex-grow: 2

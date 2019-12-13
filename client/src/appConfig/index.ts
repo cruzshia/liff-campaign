@@ -16,8 +16,8 @@ export const routePath = {
   termOfUse: '/term_of_use',
   cameraTutorial: '/camera_tutorial',
   myPage: {
-    userInfo: '/profile_user_info',
-    analysisSummary: '/profile_analysis_summary'
+    profile: '/profile',
+    profileSummary: '/profile_summary'
   }
 }
 

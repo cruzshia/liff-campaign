@@ -14,7 +14,8 @@ import WaistSizeInput from '@src/containers/waistSizeInput'
 import InfoSummary from '@src/containers/infoSummary'
 import TermOfUse from '@src//containers/TermOfUse'
 import CameraTutorial from '@src/containers/cameraTutorial'
-import MyPage from '@src/containers/MyPage'
+import Profile from '@src/containers/MyPage/Profile'
+import Summary from '@src/containers/MyPage/Summary'
 import BodyPhotoCapture from '@src/containers/bodyPhotoCapture'
 import AccountRoute from '@components/RouteHandler/AccountRoute'
 import NoneAccountRoute from '@components/RouteHandler/NoneAccountRoute'
@@ -38,8 +39,8 @@ const App: React.FC = () => {
               <AccountRoute exact path={routePath.infoSummary} component={InfoSummary} />
               <AccountRoute exact path={routePath.termOfUse} component={TermOfUse} />
               <AccountRoute exact path={routePath.cameraTutorial} component={CameraTutorial} />
-              <AccountRoute exact path={routePath.myPage.userInfo} component={MyPage} />
-              <AccountRoute exact path={routePath.myPage.analysisSummary} component={MyPage} />
+              <AccountRoute exact path={routePath.myPage.profile} component={Profile} />
+              <AccountRoute exact path={routePath.myPage.profileSummary} component={Summary} />
             </Switch>
           </Router>
         </IntlProvider>
