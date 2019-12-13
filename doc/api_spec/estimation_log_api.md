@@ -1,6 +1,6 @@
 # Group EstimationLog
 
-## EstimationLogs [/api/v1/estimaton_logs]
+## EstimationLogs [/api/v1/estimation_logs]
 
 ### GetEstimationLogs [GET]
 

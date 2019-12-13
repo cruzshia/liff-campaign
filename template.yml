@@ -106,7 +106,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/v1/estimaton_logs
+            Path: /api/v1/estimation_logs
             Method: GET
   getLinePoints:
     Type: AWS::Serverless::Function
