@@ -22,7 +22,7 @@ type BodyGramCallback = ({
   request,
   errors
 }: {
-  request: BodygramCbkRequest
+  request: BodygramCbkRequest | BodygramCreateEstimation
   errors?: string[]
 }) => void
 
@@ -47,4 +47,19 @@ interface BodyGram extends FunctionConstructor {
     createEstimationRequest: (props: CreateEstimationProps) => any
     getEstimationRequest: (props: GetEstimationProps) => any
   }
+}
+
+export interface BodygramCreateEstimation {
+  age: number
+  createdAt: Date
+  frontImage: any
+  frontImageThumb: any
+  gender: 'male' | 'female'
+  height: number
+  id: string
+  result: undefined
+  sideImage: any
+  sideImageThumb: any
+  status: string
+  weight: number
 }

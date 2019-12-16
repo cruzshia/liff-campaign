@@ -2,6 +2,7 @@ import { AnyAction } from 'redux'
 import { UserActionTypes } from './actions'
 import { UserModelType } from './userModel'
 import { removeToken } from '@src/utils/ajax'
+import { BodyActionTypes } from '../bodygram/actions'
 
 export interface UserStateType {
   token?: string
@@ -14,10 +15,7 @@ export const userInitState = {
   userChecked: false
 }
 
-export default (
-  state: UserStateType = userInitState,
-  action: AnyAction
-): UserStateType => {
+export default (state: UserStateType = userInitState, action: AnyAction): UserStateType => {
   switch (action.type) {
     case UserActionTypes.SET_LOGIN_RESUILT:
       return {
@@ -39,6 +37,15 @@ export default (
         ...state,
         profile: undefined,
         userChecked: true
+      }
+    case BodyActionTypes.SET_ESTIMATION:
+      return {
+        ...state,
+        profile: {
+          ...state.profile!,
+          offalFat: action.data.offalFat,
+          waistCircumference: action.data.waistCircumference
+        }
       }
     default:
       return state

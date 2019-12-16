@@ -46,7 +46,7 @@ export const createEstimationEpic = (action$: ActionsObservable<CreateEstimation
 
 export const getEstimationEpic = (action$: ActionsObservable<GetEstimationActType>) =>
   action$.pipe(
-    ofType(BodyActionTypes.CREATE_ESTIMATION),
+    ofType(BodyActionTypes.GET_ESTIMATION),
     exhaustMap(action =>
       from(getEstimationAjax(action.data)).pipe(
         map(res => setEstimationResult(responstToEstimation(res.data))),

@@ -13,7 +13,9 @@ import UAParser from 'ua-parser-js'
 /* eslint-disable */
 
 const MEDIA_CONSTRAINT_REAR = {
-  video: { height: 1080, width: 1920, facingMode: { exact: 'environment' } },
+  video: { height: 1080, width: 1920, 
+    facingMode: { exact: 'environment' } 
+  },
   audio: false
 }
 const MEDIA_CONSTRAINT_FRONT = { video: { height: 1080, width: 1920, facingMode: 'user' }, audio: false }

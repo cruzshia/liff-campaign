@@ -1,5 +1,6 @@
 import { Action } from 'redux'
 import { BodygramEstimation } from './bodygramModel'
+import { CreateEstimationProps } from '@src/types/bodygram'
 
 export enum BodyActionTypes {
   SET_INITIALIZE_STATE = '@Bodygram/SET_INITIALIZE_STATE',

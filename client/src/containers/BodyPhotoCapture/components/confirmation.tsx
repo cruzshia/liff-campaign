@@ -9,8 +9,8 @@ export default function Confirmation({
   side,
   requestResult
 }: {
-  front: ArrayBuffer | null
-  side: ArrayBuffer | null
+  front: Blob | null
+  side: Blob | null
   requestResult: () => void
 }) {
   return (

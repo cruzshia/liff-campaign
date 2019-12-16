@@ -17,9 +17,9 @@ export default function InfoSummary({ profile }: { profile?: UserModelType }) {
     ? {
         gender: profile.gender === 'female' ? '女性' : '男性',
         birthday: profile.birthday.replace(/([1,2]\d\d\d)(\d\d)(\d\d)/, '$1年$2月$3日'),
-        height: profile.height + 'cm',
-        weight: profile.weight + 'kg',
-        waistCircumference: profile.waistCircumference + 'cm'
+        height: profile.height ? profile.height + 'cm' : '',
+        weight: profile.weight ? profile.weight + 'kg' : '',
+        waistCircumference: profile.waistCircumference ? profile.waistCircumference + 'cm' : ''
       }
     : { gender: '', birthday: '', height: '', weight: '', waistCircumference: '' }
   return (

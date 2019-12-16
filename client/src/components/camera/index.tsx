@@ -49,7 +49,9 @@ export default function({ headerH = 0, footerH = 0, completeCbk, errorCbk }: Pro
         <div id='selfie-count'></div>
       </div>
       {/* <!-- Camera trigger --> */}
-      <button id='camera--switch'></button>
+      <button id='camera--switch' className={style.camera_switch}>
+        <img src='assets/cameraSwitch.svg' alt='camera switch' className='image'></img>
+      </button>
       <button id='camera--trigger' className={style.camera_trigger} />
     </>
   )
