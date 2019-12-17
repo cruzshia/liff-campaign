@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { UserModelType } from './userModel'
+import { UserModelType, LinePointModel } from './userModel'
 
 export enum UserActionTypes {
   LOGIN = '@User/LOGIN',
@@ -15,11 +15,14 @@ export enum UserActionTypes {
 
   UPDATE_USER = '@User/UPDATE_USER',
   UPDATE_USER_ERROR = '@User/UPDATE_USER_ERROR',
-  UPDATE_USER_SUCCESS='@User/UPDATE_USER_SUCCESS',
+  UPDATE_USER_SUCCESS = '@User/UPDATE_USER_SUCCESS',
 
   GET_USER_PROFILE = '@User/GET_USER_PROFILE',
   SET_USER_PROFILE = '@User/SET_USER_PROFILE',
-  GET_USER_PROFILE_ERROR = '@User/GET_USER_PROFILE_ERROR'
+  GET_USER_PROFILE_ERROR = '@User/GET_USER_PROFILE_ERROR',
+
+  GET_LINE_POINTS = '@User/GET_LINE_POINTS',
+  SET_LINE_POINTS = '@User/SET_LINE_POINTS'
 }
 
 export const loginAct = () => ({
@@ -74,5 +77,14 @@ export const getUserProfileErrorAct = () => ({
 
 export const setUserProfileAct = (data: UserModelType) => ({
   type: UserActionTypes.SET_USER_PROFILE,
+  data
+})
+
+export const getLinePointsAct = () => ({
+  type: UserActionTypes.GET_LINE_POINTS
+})
+
+export const setLinePointsAct = (data: LinePointModel[]) => ({
+  type: UserActionTypes.GET_LINE_POINTS,
   data
 })

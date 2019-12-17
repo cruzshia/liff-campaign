@@ -1,4 +1,4 @@
-import { IncomingUserModelType, UserModelType } from '@reducer/user/userModel'
+import { IncomingLinePointsType, IncomingUserModelType, UserModelType, LinePointModel } from '@reducer/user/userModel'
 
 export const toUserModel = (data: IncomingUserModelType): UserModelType => ({
   uid: data.uid,
@@ -19,4 +19,13 @@ export const toUserPayload = (data: UserModelType) => ({
   waist_circumference: data.waistCircumference,
   offalFat: data.offalFat,
   is_entry_contest: data.isEntryContest
+})
+
+export const toLinePointModel = (data: IncomingLinePointsType): LinePointModel => ({
+  uid: data.uid,
+  point: data.point,
+  pointUrl: data.point_url,
+  week: data.week,
+  createdAt: data.created_at,
+  updatedAt: data.updated_at
 })

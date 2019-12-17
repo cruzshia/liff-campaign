@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux'
 import { UserActionTypes } from './actions'
-import { UserModelType } from './userModel'
+import { UserModelType, LinePointModel } from './userModel'
 import { removeToken } from '@src/utils/ajax'
 import { BodyActionTypes } from '../bodygram/actions'
 
@@ -8,11 +8,13 @@ export interface UserStateType {
   token?: string
   userChecked: boolean
   profile?: UserModelType
+  linePoints: LinePointModel[]
 }
 
 export const userInitState = {
   token: undefined,
-  userChecked: false
+  userChecked: false,
+  linePoints: []
 }
 
 export default (state: UserStateType = userInitState, action: AnyAction): UserStateType => {
@@ -37,6 +39,11 @@ export default (state: UserStateType = userInitState, action: AnyAction): UserSt
         ...state,
         profile: undefined,
         userChecked: true
+      }
+    case UserActionTypes.SET_LINE_POINTS:
+      return {
+        ...state,
+        linePoints: action.data
       }
     case BodyActionTypes.SET_ESTIMATION:
       return {

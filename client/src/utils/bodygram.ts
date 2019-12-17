@@ -1,8 +1,8 @@
 import ajax from './ajax'
+import { BODYGRAM_API_KEY } from '@src/appConfig'
 
 const bodybankConfig = {
-  graph_ql_endpoint:
-    'https://2uqrhjzmpredrbsfubrw5wbgpu.appsync-api.ap-northeast-1.amazonaws.com/graphql',
+  graph_ql_endpoint: 'https://2uqrhjzmpredrbsfubrw5wbgpu.appsync-api.ap-northeast-1.amazonaws.com/graphql',
   graph_ql_region: 'ap-northeast-1',
   bucket_name: 'bodybank-enterprise-kao-dev-estimation-data-bucket',
   bucket_region: 'ap-northeast-1',
@@ -17,7 +17,7 @@ const tokenProvider = bodybank.getDefaultTokenProvider()
 
 tokenProvider.restoreTokenBlock = async (): Promise<any> => {
   const headers = {
-    'x-api-key': 'fgJxmvnLtz511hWFJeKia3jUmevOIVau8F37cYm2'
+    'x-api-key': BODYGRAM_API_KEY
   }
   try {
     const res = await ajax.get(BODYGRAM_API_PATH, { headers })
@@ -27,9 +27,7 @@ tokenProvider.restoreTokenBlock = async (): Promise<any> => {
       return bodybank.genBodyBankToken(jwt_token, identity_id)
     }
   } catch (err) {
-    const error = new Error(
-      `Failed to fetch bodybank token.\nreason: ${err.message}`
-    )
+    const error = new Error(`Failed to fetch bodybank token.\nreason: ${err.message}`)
     throw error
   }
 }

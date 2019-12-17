@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { API_PATH } from '@src/appConfig'
+import { API_HOST, API_PATH } from '@src/appConfig'
 
 const axiosInstance = axios.create({
-  baseURL: API_PATH
+  baseURL: API_HOST + API_PATH
 })
 
 export const setToken = (token: string): void => {

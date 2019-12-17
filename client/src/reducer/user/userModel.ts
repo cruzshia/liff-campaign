@@ -19,3 +19,21 @@ export interface UserModelType {
   offalFat?: number
   isEntryContest: boolean
 }
+
+export interface IncomingLinePointsType {
+  uid: string
+  point: number
+  point_url: string
+  week: number | null
+  created_at: string
+  updated_at: string
+}
+
+export interface LinePointModel {
+  uid: string
+  point: number
+  pointUrl: string
+  week: number | null
+  createdAt: string
+  updatedAt: string
+}

@@ -11,10 +11,11 @@ import {
   createUserErrorAct,
   updateUserErrorAct,
   getUserProfileErrorAct,
-  logoutClearState
+  logoutClearState,
+  setLinePointsAct
 } from '@reducer/user/actions'
 
-import { toUserModel } from './userUtil'
+import { toUserModel, toLinePointModel } from './userUtil'
 import { initBodyGramAct } from '@reducer/bodygram/actions'
 
 import { LIFF_ID } from '@src/appConfig'
@@ -57,16 +58,6 @@ const userLineLogoutEpic = (action$: ActionsObservable<AnyAction>) =>
     })
   )
 
-/*
-example:
-  createUserAct({
-    gender: 'male',
-    birthday: '2019/12/12',
-    height: 165,
-    weight: 60,
-    isEntryContest: true
-  })
-*/
 export const getUserInfoEpic = (action$: ActionsObservable<AnyAction>) =>
   action$.pipe(
     ofType(UserActionTypes.GET_USER_PROFILE),
@@ -82,11 +73,8 @@ export const createUserEpic = (action$: ActionsObservable<CreateUserActType>) =>
   action$.pipe(
     ofType(UserActionTypes.CREATE_USER),
     exhaustMap(actions =>
-      from(
-        UserService.createUserAjax(actions.data)
-      ).pipe(
-        map(res => 
-          setUserProfileAct(toUserModel(res.data))),
+      from(UserService.createUserAjax(actions.data)).pipe(
+        map(res => setUserProfileAct(toUserModel(res.data))),
         catchError(err => of(unAthorizedCheck(err, createUserErrorAct())))
       )
     )
@@ -106,4 +94,22 @@ export const updateUserEpic = (action$: ActionsObservable<CreateUserActType>) =>
     )
   )
 
-export default [createUserEpic, updateUserEpic, userLineLoginEpic, userLineLogoutEpic, getUserInfoEpic]
+export const getUserLinePointsEpic = (action$: ActionsObservable<AnyAction>) =>
+  action$.pipe(
+    ofType(UserActionTypes.GET_LINE_POINTS),
+    exhaustMap(() =>
+      from(UserService.getUserLinePointAjax()).pipe(
+        map(res => setLinePointsAct(res.data.map(point => toLinePointModel(point)))),
+        catchError(err => of(unAthorizedCheck(err, updateUserErrorAct())))
+      )
+    )
+  )
+
+export default [
+  createUserEpic,
+  updateUserEpic,
+  userLineLoginEpic,
+  userLineLogoutEpic,
+  getUserInfoEpic,
+  getUserLinePointsEpic
+]
