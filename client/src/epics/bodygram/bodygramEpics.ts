@@ -50,7 +50,7 @@ export const getEstimationEpic = (action$: ActionsObservable<GetEstimationActTyp
     exhaustMap(action =>
       from(getEstimationAjax(action.data)).pipe(
         map(res => setEstimationResult(responstToEstimation(res.data))),
-        tap(() => ajaxSubject.success(BodyActionTypes.SET_ESTIMATION)),
+        tap(({ data }) => ajaxSubject.success(BodyActionTypes.SET_ESTIMATION, data.waistCircumference)),
         catchError(error => of(unAthorizedCheck(error, getEstimationFailAct())))
       )
     )

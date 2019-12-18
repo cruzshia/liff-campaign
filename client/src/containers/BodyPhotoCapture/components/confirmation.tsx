@@ -14,7 +14,7 @@ export default function Confirmation({
   requestResult: () => void
 }) {
   return (
-    <>
+    <div className='h-100vh d-flex flex-column'>
       <CameraHeader />
       <Background>
         <div className='flex-center-center flex-column'>
@@ -27,6 +27,6 @@ export default function Confirmation({
         <Button onClick={requestResult} />
         <Button />
       </Background>
-    </>
+    </div>
   )
 }

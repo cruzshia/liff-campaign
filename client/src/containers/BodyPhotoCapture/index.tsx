@@ -48,11 +48,8 @@ export default function BodyPhotoCapture() {
     setImage({ front: null, side: null })
   }, [setImage, setIsCalculating, img, profile, dispatch])
 
-  const result = profile && profile.waistCircumference ? profile.waistCircumference : null
-  result && setIsCalculating(false)
   return (
     <BodyCaptureMain
-      result={result}
       isCalculating={isCalculating}
       img={img}
       requestResult={requestResult}

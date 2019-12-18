@@ -5,7 +5,7 @@ import style from '../bodyPhotoCapture.module.sass'
 import Button from '@components/button'
 import { routePath } from '@src/appConfig'
 
-export default function Calculating({ result }: { result: number }) {
+export default function Calculating({ result }: { result: number|null }) {
   return (
     <div className='h-100vh d-flex flex-column'>
       <CameraHeader />

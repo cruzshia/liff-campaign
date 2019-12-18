@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PhotoCapture from './components/photoCapture'
 import Confirmation from './components/confirmation'
 import Calculating from './components/calculating'
 import DisplayResult from './components/displayResult'
 import { ImgState } from './index'
 import { CameraProp } from '@components/camera'
-import { interval, Observable, SubscriptionLike } from 'rxjs'
+import { interval, Observable } from 'rxjs'
 import { takeUntil, timeout } from 'rxjs/operators'
 import ajaxSubject from '@src/utils/ajaxSubject'
 import { BodyActionTypes, getEstimationAct } from '@reducer/bodygram/actions'
 import { useDispatch } from 'react-redux'
 
 interface Props {
-  result: number | null
   isCalculating: boolean
   img: ImgState
   requestResult: () => void
   handleProceedCamera: (img: CameraProp) => void
 }
 
-export default function BodyCaptureMain({ result, isCalculating, img, requestResult, handleProceedCamera }: Props) {
+interface Result {
+  waistCircumference: null | number
+  complete: boolean
+}
+
+export default function BodyCaptureMain({ isCalculating, img, requestResult, handleProceedCamera }: Props) {
+  const [result, setResult] = useState<Result>({ waistCircumference: null, complete: false })
   const dispatch = useDispatch()
   useEffect(() => {
     const subscription = ajaxSubject.subscribe(
@@ -31,7 +36,8 @@ export default function BodyCaptureMain({ result, isCalculating, img, requestRes
             const subscribeSetEstimation = ajaxSubject.subscribe(
               { successType: [BodyActionTypes.SET_ESTIMATION] },
               {
-                next: () => {
+                next: res => {
+                  setResult({ waistCircumference: res.data, complete: true })
                   subscriber.next()
                   subscribeSetEstimation.unsubscribe()
                 }
@@ -49,8 +55,9 @@ export default function BodyCaptureMain({ result, isCalculating, img, requestRes
     )
     return () => subscription.unsubscribe()
   })
-  return result ? (
-    <DisplayResult result={result} />
+
+  return result.complete ? (
+    <DisplayResult result={result.waistCircumference} />
   ) : isCalculating ? (
     <Calculating />
   ) : img.front && img.side ? (

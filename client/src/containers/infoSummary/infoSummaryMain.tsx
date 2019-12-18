@@ -10,6 +10,7 @@ import List from '@components/list'
 import style from './infoSummary.module.sass'
 import LineButton from '@components/LineButton'
 import { UserModelType } from '@reducer/user/userModel'
+import { routePath } from '@src/appConfig'
 
 export default function InfoSummary({ profile }: { profile?: UserModelType }) {
   const { formatMessage } = useIntl()
@@ -48,7 +49,9 @@ export default function InfoSummary({ profile }: { profile?: UserModelType }) {
           </div>
         </InfoCard>
         <p className={`mb-1rem ${style.reminder}`}>{formatMessage(messages.reminder)}</p>
-        <Button color='orange'>{formatMessage(messages.buttonText)}</Button>
+        <Button color='orange' path={routePath.myPage.profileSummary}>
+          {formatMessage(messages.buttonText)}
+        </Button>
         <p className={style.reminder2}>{formatMessage(messages.reminder2)}</p>
         <LineButton />
       </Background>
