@@ -3,13 +3,13 @@ import crypto from 'crypto'
 
 import { get, lineToken } from '../lib/http'
 
-const shasum = crypto.createHash('sha1');
-
-const isDevelopment = process.env.NODE_ENV !== 'production'
-
 const LINE_HOST = 'https://api.line.me'
 const PROFILE_PATH = '/v2/profile'
 
+interface Response {
+  status: number
+  body: ProfileResponse
+}
 interface ProfileResponse {
   userId?: string
   displayName?: string | null
@@ -27,15 +27,17 @@ export const authorize = async (event: APIGatewayEvent) => {
         "displayName": "Acs.Saito"
       }
     */
-    console.log(isDevelopment)
-    if (isDevelopment) {
-      userId = key === 'dev_token' ? 'dev_user_id' : undefined
+
+    if (key === 'dev_token') {
+      userId = 'dev_user_id'
     } else {
-      const res: ProfileResponse = await get(LINE_HOST, PROFILE_PATH, lineToken(key))
-      userId = res.userId
+      const res: Response = await get(LINE_HOST, PROFILE_PATH, lineToken(key))
+      console.log(res)
+      userId = res.body.userId
     }
   } catch(e) {
     console.error(e)
   }
+  const shasum = crypto.createHash('sha1')
   return userId ? shasum.update(userId).digest('hex') : undefined
 }

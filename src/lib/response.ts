@@ -6,6 +6,7 @@ const commonResponse = (statusCode: number, e: any): APIGatewayProxyResult => {
     body: JSON.stringify(e),
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : "*",
     },
   }
 }
