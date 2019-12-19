@@ -11,6 +11,8 @@ class Users extends Model {
   public waist_circumference: number | null
   public offal_fat: number | null
   public is_entry_contest!: boolean
+  public bodygram_id: string | null
+  public rank: number | null
   public created_at: Date
   public updated_at: Date
 
@@ -45,6 +47,12 @@ class Users extends Model {
         is_entry_contest: {
           allowNull: false,
           type: DataTypes.BOOLEAN,
+        },
+        bodygram_id: {
+          type: DataTypes.STRING,
+        },
+        rank: {
+          type: DataTypes.INTEGER,
         },
         created_at: {
           type: DataTypes.DATE,

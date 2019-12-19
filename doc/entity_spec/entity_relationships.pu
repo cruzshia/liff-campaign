@@ -20,6 +20,8 @@ package "Healthya LINE Campaign" as application {
     waist_circumference: number
     offal_fat: number
     is_entry_contest: boolean
+    bodygram_id: string
+    rank: number
     created_at: datetime
     updated_at: datetime
   }

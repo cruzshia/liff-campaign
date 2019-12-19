@@ -3,6 +3,7 @@ import { APIGatewayEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from '
 import { bodyGramToken, post } from '../../lib/http'
 import { authorize } from '../../lib/authorize'
 import { OK, UnAuthorized, ServerError } from '../../lib/response'
+import db from '../../db/models'
 
 const env = process.env
 
@@ -23,6 +24,12 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   try {
     // TODO: Get user_id from API header token or query.
     const res = await post(env.hostUrl || '', '/token', { user_id: userId}, bodyGramToken(env.token))
+    await db.users.update({
+      bodygram_id: res.body.content.token.identity_id,
+    },
+    {
+      where: { uid: userId },
+    })
     response = OK(res.body)
   } catch(e) {
     response = ServerError(e)
