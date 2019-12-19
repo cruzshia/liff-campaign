@@ -24,6 +24,8 @@ export default function BodyPhotoCapture() {
     [setImage]
   )
 
+  const handleRetake = useCallback(() => setImage({ front: null, side: null }), [setImage])
+
   const requestResult = useCallback(() => {
     profile &&
       img.front &&
@@ -54,6 +56,7 @@ export default function BodyPhotoCapture() {
       img={img}
       requestResult={requestResult}
       handleProceedCamera={handleProceedCamera}
+      handleRetake={handleRetake}
     />
   )
 }

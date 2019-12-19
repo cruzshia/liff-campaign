@@ -7,7 +7,6 @@ import messages from './messages'
 import PageTitle from '@components/pageTitle'
 import DashBorder from '@src/components/dashBorder'
 import { routePath } from '@src/appConfig'
-import LineButton from '@src/components/LineButton'
 
 export default function MeasurementMain() {
   const { formatMessage } = useIntl()
@@ -15,24 +14,10 @@ export default function MeasurementMain() {
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.title)}</PageTitle>
       <Background>
-        <InfoCard
-          title={formatMessage(messages.title)}
-          message={formatMessage(messages.message)}
-          titleImg='/assets/waistSize.svg'
-        >
-          <DashBorder />
-          <div className='flex-center-center p-1rem'>
-            <img src='/assets/measurementIntro.svg' alt='' className='image' />
-          </div>
-        </InfoCard>
-        <div>
-          <span className='pre-wrap'>{formatMessage(messages.reminder)}</span>
-          <img src='/' alt='' />
-        </div>
-
+        <img src='assets/measurement.svg' alt='' className='w-100' />
         <Button path={routePath.termOfUse}>{formatMessage(messages.useCamera)}</Button>
+        <img src='assets/measurement2.svg' alt='' className='w-100' />
         <Button path={routePath.waistSizeInput}>{formatMessage(messages.useInput)}</Button>
-        <LineButton />
       </Background>
     </div>
   )

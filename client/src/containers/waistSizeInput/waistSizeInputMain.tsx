@@ -6,7 +6,6 @@ import Select from '@src/components/SelectMenu'
 import messages from './messages'
 import { useIntl } from 'react-intl'
 import PageTitle from '@components/pageTitle'
-import LineButton from '@src/components/LineButton'
 
 const MIN_WAIST_SIZE = 50
 
@@ -31,11 +30,10 @@ export default function({ handleProceed }: { handleProceed: (waistCircumference:
           titleImg='/assets/waistSize.svg'
         >
           <Select unit='cm' name='inputWaistSize' onChange={handleOnChange} min={MIN_WAIST_SIZE} max={300} />
-          <p className='fs-8'>{formatMessage(messages.hint)}</p>
+          <p className='fs-8 mt-1rem fw-300'>{formatMessage(messages.hint)}</p>
         </InfoCard>
-        <img className='image' src='/assets/waistSizeReminder.svg' alt=''></img>
+        <img className='w-100' src='/assets/waistSizeReminder.svg' alt=''></img>
         <Button onClick={handleClick} />
-        <LineButton />
       </Background>
     </div>
   )

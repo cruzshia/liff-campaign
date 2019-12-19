@@ -3,16 +3,18 @@ import CameraHeader from '@components/CameraHeader'
 import Background from '@components/background'
 import style from '../bodyPhotoCapture.module.sass'
 import Button from '@components/button'
+import { useIntl } from 'react-intl'
+import messages from '../message'
 
-export default function Confirmation({
-  front,
-  side,
-  requestResult
-}: {
+interface Props {
   front: Blob | null
   side: Blob | null
   requestResult: () => void
-}) {
+  handleRetake: () => void
+}
+
+export default function Confirmation({ front, side, requestResult, handleRetake }: Props) {
+  const formatMessage = useIntl().formatMessage
   return (
     <div className='h-100vh d-flex flex-column'>
       <CameraHeader />
@@ -23,9 +25,11 @@ export default function Confirmation({
           <img alt='' src='assets/confirmationSide.svg' className={`${style.title} mt-1rem mb-1rem`} />
           <img alt='' src={URL.createObjectURL(side)} className={`${style.check_image} mb-1rem image`} />
         </div>
-        <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>{formatMessage(messages.confirm)}</p>
         <Button onClick={requestResult} />
-        <Button />
+        <Button color='gray' onClick={handleRetake}>
+          {formatMessage(messages.retake)}
+        </Button>
       </Background>
     </div>
   )

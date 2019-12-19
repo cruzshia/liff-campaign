@@ -4,6 +4,7 @@ const R = 40
 const CY = 50
 const CX = 50
 const percentage = 40
+
 export default function DoughnutChart() {
   return (
     <svg viewBox='0 0 100 55'>
@@ -29,4 +30,3 @@ export default function DoughnutChart() {
   )
 }
 
-//d='M5 50a45 45 0 1 1 90 0'

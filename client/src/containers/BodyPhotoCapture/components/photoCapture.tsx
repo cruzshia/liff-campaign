@@ -16,9 +16,11 @@ export default function({ handleProceed }: Props) {
   return (
     <>
       <CameraHeader />
-      <Camera completeCbk={handleProceed} errorCbk={handleError} headerH={50} footerH={70} />
-      <div className={style.camera_control}>
-        <Link to={routePath.cameraTutorial}>back</Link>
+      <Camera completeCbk={handleProceed} errorCbk={handleError} headerH={100} footerH={70} />
+      <div className={`${style.camera_control} d-flex align-center`}>
+        <Link to={routePath.cameraTutorial}>
+          <img src='assets/cameraBack.svg' alt='' className={style.go_Back} />
+        </Link>
       </div>
     </>
   )

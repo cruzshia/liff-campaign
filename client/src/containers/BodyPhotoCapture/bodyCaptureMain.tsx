@@ -16,6 +16,7 @@ interface Props {
   img: ImgState
   requestResult: () => void
   handleProceedCamera: (img: CameraProp) => void
+  handleRetake: () => void
 }
 
 interface Result {
@@ -23,7 +24,13 @@ interface Result {
   complete: boolean
 }
 
-export default function BodyCaptureMain({ isCalculating, img, requestResult, handleProceedCamera }: Props) {
+export default function BodyCaptureMain({
+  isCalculating,
+  img,
+  requestResult,
+  handleProceedCamera,
+  handleRetake
+}: Props) {
   const [result, setResult] = useState<Result>({ waistCircumference: null, complete: false })
   const dispatch = useDispatch()
   useEffect(() => {
@@ -61,7 +68,7 @@ export default function BodyCaptureMain({ isCalculating, img, requestResult, han
   ) : isCalculating ? (
     <Calculating />
   ) : img.front && img.side ? (
-    <Confirmation front={img.front} side={img.side} requestResult={requestResult} />
+    <Confirmation front={img.front} side={img.side} requestResult={requestResult} handleRetake={handleRetake} />
   ) : (
     <PhotoCapture handleProceed={handleProceedCamera} />
   )

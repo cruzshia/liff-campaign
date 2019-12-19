@@ -6,7 +6,6 @@ import { UserModelType } from '@reducer/user/userModel'
 import Background from '@components/background'
 import InfoCard from '@components/infoCard'
 import Button from '@components/button'
-import LineButton from '@components/LineButton'
 import InfoRow from './components/InfoRow'
 import messages from './messages'
 import style from './profile.module.sass'
@@ -45,7 +44,6 @@ const PrfoileMain = ({ profile }: Props) => {
           </InfoCard>
         </div>
         <Button>基本情報變更</Button>
-        <LineButton />
       </Background>
     </div>
   ) : null

@@ -13,7 +13,7 @@ export default function Button({
 }: React.PropsWithChildren<{
   onClick?: () => void
   path?: string
-  color?: 'green' | 'light_green' | 'orange'
+  color?: 'green' | 'light_green' | 'orange' | 'gray'
   submit?: boolean
 }>) {
   const { formatMessage } = useIntl()

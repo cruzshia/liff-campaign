@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Background from '@components/background'
 import PageTitle from '@components/pageTitle'
 import messages from './messages'
@@ -8,21 +8,24 @@ import DashBorder from '@components/dashBorder'
 import Button from '@components/button'
 import List from '@components/list'
 import style from './infoSummary.module.sass'
-import LineButton from '@components/LineButton'
 import { UserModelType } from '@reducer/user/userModel'
 import { routePath } from '@src/appConfig'
 
 export default function InfoSummary({ profile }: { profile?: UserModelType }) {
   const { formatMessage } = useIntl()
-  const info = profile
-    ? {
-        gender: profile.gender === 'female' ? '女性' : '男性',
-        birthday: profile.birthday.replace(/([1,2]\d\d\d)(\d\d)(\d\d)/, '$1年$2月$3日'),
-        height: profile.height ? profile.height + 'cm' : '',
-        weight: profile.weight ? profile.weight + 'kg' : '',
-        waistCircumference: profile.waistCircumference ? profile.waistCircumference + 'cm' : ''
-      }
-    : { gender: '', birthday: '', height: '', weight: '', waistCircumference: '' }
+  const info = useMemo(
+    () =>
+      profile
+        ? {
+            gender: profile.gender === 'female' ? '女性' : '男性',
+            birthday: profile.birthday.replace(/([1,2]\d\d\d)(\d\d)(\d\d)/, '$1年$2月$3日'),
+            height: profile.height ? profile.height + 'cm' : '',
+            weight: profile.weight ? profile.weight + 'kg' : '',
+            waistCircumference: profile.waistCircumference ? profile.waistCircumference + 'cm' : ''
+          }
+        : { gender: '', birthday: '', height: '', weight: '', waistCircumference: '' },
+    [profile]
+  )
   return (
     <div className='h-100vh d-flex flex-column'>
       <PageTitle>{formatMessage(messages.title)}</PageTitle>
@@ -53,7 +56,6 @@ export default function InfoSummary({ profile }: { profile?: UserModelType }) {
           {formatMessage(messages.buttonText)}
         </Button>
         <p className={style.reminder2}>{formatMessage(messages.reminder2)}</p>
-        <LineButton />
       </Background>
     </div>
   )

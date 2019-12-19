@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl'
 import messages from './messages'
 import Select from '@src/components/SelectMenu'
 import PageTitle from '@components/pageTitle'
-import LineButton from '@src/components/LineButton'
+import GrayLineButton from '@src/components/GrayLineButton'
 
 const MIN_WEIGHT = 30
 
@@ -34,11 +34,11 @@ export default function({ handleProceed }: { handleProceed: (weight: number) => 
           titleImg='/assets/weight.svg'
         >
           <Select unit='kg' name='weight' onChange={handleOnChange} min={MIN_WEIGHT} max={200} />
-          <p className='fs-8'>{formatMessage(messages.weightHint)}</p>
+          <p className='fs-8 fw-300 mt-1rem'>{formatMessage(messages.weightHint)}</p>
         </InfoCard>
         <img className='image' src='/assets/weightReminder.svg' alt=''></img>
         <Button onClick={handleClick} />
-        <LineButton />
+        <GrayLineButton/>
       </Background>
     </div>
   )

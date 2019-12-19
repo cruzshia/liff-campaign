@@ -1,4 +1,11 @@
-import { IncomingLinePointsType, IncomingUserModelType, UserModelType, LinePointModel } from '@reducer/user/userModel'
+import {
+  IncomingLinePointsType,
+  IncomingUserModelType,
+  UserModelType,
+  LinePointModel,
+  IncomingEstimationLogType,
+  EstimationLogModel
+} from '@reducer/user/userModel'
 
 export const toUserModel = (data: IncomingUserModelType): UserModelType => ({
   uid: data.uid,
@@ -28,4 +35,14 @@ export const toLinePointModel = (data: IncomingLinePointsType): LinePointModel =
   week: data.week,
   createdAt: data.created_at,
   updatedAt: data.updated_at
+})
+
+export const toEstimationLogModel = (data: IncomingEstimationLogType): EstimationLogModel => ({
+  uid: data.uid,
+  waistCircumference: data.waist_circumference,
+  offalFat: data.offal_fat,
+  wcDiff: data.wc_diff,
+  ofDiff: data.of_diff,
+  week: data.week,
+  createdAt: data.created_at
 })

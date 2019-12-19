@@ -12,12 +12,12 @@ import {
   updateUserErrorAct,
   getUserProfileErrorAct,
   logoutClearState,
-  setLinePointsAct
+  setLinePointsAct,
+  setEstimationLogAct
 } from '@reducer/user/actions'
 
-import { toUserModel, toLinePointModel } from './userUtil'
+import { toUserModel, toLinePointModel, toEstimationLogModel } from './userUtil'
 import { initBodyGramAct } from '@reducer/bodygram/actions'
-
 import { LIFF_ID } from '@src/appConfig'
 import { setToken } from '@src/utils/ajax'
 import * as UserService from './userService'
@@ -105,11 +105,53 @@ export const getUserLinePointsEpic = (action$: ActionsObservable<AnyAction>) =>
     )
   )
 
+export const getEstimationLog = (action$: ActionsObservable<AnyAction>) =>
+  action$.pipe(
+    ofType(UserActionTypes.GET_ESTIMATION_LOG),
+    exhaustMap(() =>
+      // from(UserService.getEstimationLogAjax()).pipe(
+      from([
+        {
+          data: [
+            {
+              uid: 'aaaaaa',
+              rid: 'aaaaaa',
+              status: 'complete',
+              waist_circumference: 1,
+              offal_fat: 100,
+              wc_diff: 1,
+              of_diff: 1,
+              week: 1,
+              created_at: new Date(),
+              updated_at: new Date()
+            },
+            {
+              uid: 'aaaaaa',
+              rid: 'aaaaaa',
+              status: 'complete',
+              waist_circumference: 1,
+              offal_fat: 90,
+              wc_diff: 1,
+              of_diff: 1,
+              week: 2,
+              created_at: new Date(),
+              updated_at: new Date()
+            }
+          ]
+        }
+      ]).pipe(
+        map(res => setEstimationLogAct(res.data.map(log => toEstimationLogModel(log)).sort((a, b) => a.week - b.week))),
+        catchError(err => of(unAthorizedCheck(err, updateUserErrorAct())))
+      )
+    )
+  )
+
 export default [
   createUserEpic,
   updateUserEpic,
   userLineLoginEpic,
   userLineLogoutEpic,
   getUserInfoEpic,
-  getUserLinePointsEpic
+  getUserLinePointsEpic,
+  getEstimationLog
 ]
