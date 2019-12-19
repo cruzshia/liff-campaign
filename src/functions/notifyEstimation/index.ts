@@ -4,6 +4,11 @@ import db from '../../db/models'
 import { OK, BadRequest } from '../../lib/response'
 import { getOffalFat } from '../../lib/offalFat'
 import { convertResponse } from '../../model/estimation_log'
+import { post, lineToken } from '../../lib/http'
+
+const SENDMESSAGE_HOST = 'https://apistage.dialogone.jp'
+const SENDMESSAGE_PATH = '/v1/messagesend'
+const point_table = [10, 5, 5, 20, 5, 5, 5,  20, 5, 5, 5, 30]　 
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   if (event.httpMethod !== 'POST') {
@@ -47,6 +52,36 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
       await db.users.update({ waist_circumference, offal_fat }, { where: { uid }})
       const updatedLog = await db.estimationLogs.findByPk(rid)
       response = updatedLog ? OK(convertResponse(updatedLog)) : BadRequest('')
+
+      if("completed" === status ) {
+        const week = lastLog.week
+        const point = point_table[week]
+
+        // テーブルline_pointからpointが同値でuser_idが未指定のレコードを探す
+        const unStoredRecords = await db.linePoints.findAll({
+        　　where: { uid :null, point :point },
+           limit: 1,
+        })
+  
+        if (unStoredRecords.length > 0) {
+          response = BadRequest('')
+        } else {
+          // レコードにuidとweekをセットする
+          await db.linePoints.update({
+            uid: uid,
+            week: week,
+          },
+          {
+            where: {  uid :null, point :point },
+            limit: 1,
+          })
+  
+          // URLを含むメッセージを送信(Line Point, Amazon coupon)
+          const key = event.headers.Authorization
+          await post(SENDMESSAGE_HOST, SENDMESSAGE_PATH, body, lineToken(key))  
+        }
+      }
+
     } else {
       const createdLog = await db.estimationLogs.create({
         uid,
@@ -56,11 +91,12 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
         offal_fat,
         wc_diff: waist_circumference && lastLog && lastLog.waist_circumference ? waist_circumference - lastLog.waist_circumference : null,
         of_diff: offal_fat && lastLog && lastLog.offal_fat ? offal_fat - lastLog.offal_fat : null,
-        week: userLogs.length + 1,
+      week: userLogs.length + 1,
       })
       await db.users.update({ waist_circumference, offal_fat }, { where: { uid }})
       response = OK(convertResponse(createdLog))
     }
+  
   } catch (e) {
     console.log(e)
     response = BadRequest(e)
