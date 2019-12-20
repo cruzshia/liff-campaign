@@ -25,8 +25,17 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
     const body = JSON.parse(event.body || '{}')
     const rid = body.request.id
     const bodygram_id = body.request.user_id
-    const status = body.request.status
     const waist_circumference = body.request.waist_circumference || null
+
+    let status
+    switch (body.request.status) {
+      case 'pendingAutomaticEstimation':
+        status = 'pending'
+        break
+      default:
+        status = body.request.status
+        break
+    }
 
     const user = await db.users.findOne({ where: { bodygram_id }})
     if (!user) {
