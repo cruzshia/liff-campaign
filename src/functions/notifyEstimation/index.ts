@@ -9,6 +9,7 @@ import { post, lineToken } from '../../lib/http'
 const SENDMESSAGE_HOST = 'https://apistage.dialogone.jp'
 const SENDMESSAGE_PATH = '/v1/messagesend'
 const point_table = [10, 5, 5, 20, 5, 5, 5,  20, 5, 5, 5, 30]
+const coupon_table = [5, 0, 0, 10, 0, 0, 0,  10, 0, 0, 0, 10]
 
 const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
   if (event.httpMethod !== 'POST') {
@@ -82,10 +83,39 @@ const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
             limit: 1,
           })
 
-          // URLを含むメッセージを送信(Line Point, Amazon coupon)
+          // URLを含むメッセージを送信(Line Point)
           const key = event.headers.Authorization
           await post(SENDMESSAGE_HOST, SENDMESSAGE_PATH, body, lineToken(key))
         }
+
+        // テーブルamazon_couponsからpointが同値でuser_idが未指定のレコードを探す
+        const coupon_rate = coupon_table[week]
+        if(coupon_rate !== 0) {
+          const unStoredCouponRecords = await db.amazonCoupons.findAll({
+            where: { uid :null, point },
+            limit: 1,
+          })
+          // 使用可能なクーポンが見つからない
+          if (unStoredCouponRecords.length === 0) {
+            // テスト用に無効化しておく
+            // response = BadRequest('')
+            console.error('Not found available coupon.')
+          } else {
+            // レコードにuidをセットする
+            await db.amazonCoupons.update({
+              uid,
+            },
+            {
+              where: {  uid :null, point :point },
+              limit: 1,
+            })
+
+            // URLを含むメッセージを送信(Amazon coupon)
+            const key = event.headers.Authorization
+            await post(SENDMESSAGE_HOST, SENDMESSAGE_PATH, body, lineToken(key))
+          }
+        }
+
       }
 
     } else {
